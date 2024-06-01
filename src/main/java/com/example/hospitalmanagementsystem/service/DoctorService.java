@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
@@ -54,5 +53,9 @@ public class DoctorService {
                 () -> {
                     throw new ResourceNotFoundException("Doctor with INN " + inn + " not found");
                 });
+    }
+
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
     }
 }

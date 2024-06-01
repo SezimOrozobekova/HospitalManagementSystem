@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class AdministratorService {
 
     private final AdministratorRepository administratorRepository;

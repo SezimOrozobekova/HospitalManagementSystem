@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.HelloController">
+    <children>
+        <TableView fx:id="doctorTableView" layoutX="85.0" layoutY="28.0" prefHeight="200.0" prefWidth="430.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+                <TableColumn fx:id="specialtyColumn" prefWidth="150.0" text="Specialty" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
