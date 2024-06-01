@@ -33,6 +33,10 @@ public class AdministratorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Administrator with ID " + id + " not found")));
     }
 
+    public Optional<Administrator> getAdministratorByUsernameAndPassword(String username, String password) {
+        return administratorRepository.findByUsernameAndPassword(username, password);
+    }
+
     public Optional<Administrator> getAdministratorByUsername(String username) {
         return Optional.ofNullable(administratorRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrator with username " + username + " not found")));

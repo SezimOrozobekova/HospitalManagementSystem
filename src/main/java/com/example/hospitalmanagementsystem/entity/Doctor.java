@@ -22,7 +22,7 @@ public class Doctor {
     @NotNull(message = "INN cannot be null")
     private Long inn;
 
-
+    private String password;
 
     @NotBlank(message = "Last name is required")
     @Size(max = 100, message = "Last name must be less than or equal to 100 characters")
@@ -75,9 +75,11 @@ public class Doctor {
 
     private double salary;
 
-    @OneToMany(mappedBy = "doctor")
-    private List<MedicalHistory> medicalHistories;
 
+
+//    @OneToMany(mappedBy = "doctor")
+//    private List<MedicalHistory> medicalHistories;
+//
 
 
 }

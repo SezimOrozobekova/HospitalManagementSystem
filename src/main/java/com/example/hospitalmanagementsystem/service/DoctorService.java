@@ -26,6 +26,10 @@ public class DoctorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor with INN " + inn + " not found")));
     }
 
+    public Optional<Doctor> getDoctorByInnAndPassword(Long inn, String password) {
+        return doctorRepository.findByInnAndPassword(inn, password);
+    }
+
     public Doctor createDoctor(Doctor doctor) {
         try {
             return doctorRepository.save(doctor);

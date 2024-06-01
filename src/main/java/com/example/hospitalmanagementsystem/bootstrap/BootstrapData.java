@@ -1,9 +1,7 @@
 package com.example.hospitalmanagementsystem.bootstrap;
 
-import com.example.hospitalmanagementsystem.entity.Doctor;
-import com.example.hospitalmanagementsystem.entity.MedicalHistory;
-import com.example.hospitalmanagementsystem.entity.Patient;
-import com.example.hospitalmanagementsystem.entity.Specialty;
+import com.example.hospitalmanagementsystem.entity.*;
+import com.example.hospitalmanagementsystem.repository.AdministratorRepository;
 import com.example.hospitalmanagementsystem.repository.DoctorRepository;
 import com.example.hospitalmanagementsystem.repository.MedicalHistoryRepository;
 import com.example.hospitalmanagementsystem.repository.PatientRepository;
@@ -17,22 +15,25 @@ import java.util.List;
 
 @Component
 public class BootstrapData implements ApplicationRunner {
+    private final AdministratorRepository administratorRepository;
 
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
     private final MedicalHistoryRepository medicalHistoryRepository;
 
     public BootstrapData(DoctorRepository doctorRepository, PatientRepository patientRepository,
-                         MedicalHistoryRepository medicalHistoryRepository) {
+                         MedicalHistoryRepository medicalHistoryRepository, AdministratorRepository administratorRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.medicalHistoryRepository = medicalHistoryRepository;
+        this.administratorRepository = administratorRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) {
         loadDoctorsAndPatients();
         writeMedicalHistory();
+        loadAdministrators();
     }
 
     private void loadDoctorsAndPatients() {
@@ -40,6 +41,7 @@ public class BootstrapData implements ApplicationRunner {
             List<Doctor> doctors = Arrays.asList(
                     Doctor.builder()
                             .inn(1234567890L)
+                            .password("password")
                             .lastName("Абдымажитов")
                             .firstName("Асылбек")
                             .gender("Male")
@@ -49,6 +51,24 @@ public class BootstrapData implements ApplicationRunner {
                             .emergencyContact("555-5678")
                             .specialty(Specialty.DENTIST)
                             .email("asyzbek.abdymazhitov@example.com")
+                            .employmentStartDate(LocalDateTime.now().minusYears(5))
+                            .experience("10 лет")
+                            .medicalDegree("MD")
+                            .education("КГМА им. И. К. Ахунбаева")
+                            .salary(100000.0)
+                            .build(),
+                    Doctor.builder()
+                            .inn(1L)
+                            .password("1")
+                            .lastName("Орозобекова")
+                            .firstName("Сезим")
+                            .gender("Female")
+                            .dateBirthday(LocalDateTime.of(2000, 5, 15, 0, 0))
+                            .address("123 Осмонова, Бишкек")
+                            .phoneNumber("555-1234")
+                            .emergencyContact("555-5678")
+                            .specialty(Specialty.DENTIST)
+                            .email("sezim.orozobekova@example.com")
                             .employmentStartDate(LocalDateTime.now().minusYears(5))
                             .experience("10 лет")
                             .medicalDegree("MD")
@@ -71,9 +91,11 @@ public class BootstrapData implements ApplicationRunner {
                             .medicalDegree("MD")
                             .education("КГМА им. И. К. Ахунбаева")
                             .salary(90000.0)
+                            .password("password")
                             .build(),
                     Doctor.builder()
                             .inn(1357924680L)
+                            .password("password")
                             .lastName("Кадырова")
                             .firstName("Жазгуль")
                             .gender("Female")
@@ -91,6 +113,7 @@ public class BootstrapData implements ApplicationRunner {
                             .build(),
                     Doctor.builder()
                             .inn(2468135790L)
+                            .password("password")
                             .lastName("Мамбетов")
                             .firstName("Асыл")
                             .gender("Male")
@@ -108,6 +131,7 @@ public class BootstrapData implements ApplicationRunner {
                             .build(),
                     Doctor.builder()
                             .inn(3692581470L)
+                            .password("password")
                             .lastName("Исаева")
                             .firstName("Лейла")
                             .gender("Female")
@@ -125,6 +149,7 @@ public class BootstrapData implements ApplicationRunner {
                             .build(),
                     Doctor.builder()
                             .inn(1592637480L)
+                            .password("password")
                             .lastName("Абдуллаев")
                             .firstName("Руслан")
                             .gender("Male")
@@ -142,6 +167,7 @@ public class BootstrapData implements ApplicationRunner {
                             .build(),
                     Doctor.builder()
                             .inn(7539514680L)
+                            .password("password")
                             .lastName("Темиров")
                             .firstName("Алишер")
                             .gender("Male")
@@ -159,6 +185,7 @@ public class BootstrapData implements ApplicationRunner {
                             .build(),
                     Doctor.builder()
                             .inn(4561237890L)
+                            .password("password")
                             .lastName("Сыдыкова")
                             .firstName("Айжан")
                             .gender("Female")
@@ -204,6 +231,23 @@ public class BootstrapData implements ApplicationRunner {
                             .build()
             );
             patientRepository.saveAll(patients);
+        }
+    }
+    private void loadAdministrators() {
+        if (administratorRepository.count() == 0) {
+            List<Administrator> administrators = Arrays.asList(
+                    Administrator.builder()
+                            .id(1L)
+                            .username("admin1")
+                            .password("password1")
+                            .build(),
+                    Administrator.builder()
+                            .id(2L)
+                            .username("admin2")
+                            .password("password2")
+                            .build()
+            );
+            administratorRepository.saveAll(administrators);
         }
     }
 

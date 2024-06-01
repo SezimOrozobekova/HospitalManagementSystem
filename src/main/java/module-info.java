@@ -23,7 +23,7 @@ module com.example.hospitalmanagementsystem {
     opens com.example.hospitalmanagementsystem.exception to spring.core, spring.beans, spring.context;
     opens com.example.hospitalmanagementsystem.repository to spring.core, spring.beans, spring.context;
     opens com.example.hospitalmanagementsystem.service to spring.core, spring.beans, spring.context;
-
+    opens com.example.hospitalmanagementsystem.config to spring.core, spring.beans, spring.context;
 
 
     exports com.example.hospitalmanagementsystem;

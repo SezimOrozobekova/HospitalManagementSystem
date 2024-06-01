@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>119309</IntrospectionStateNumber>
+      <IntrospectionStateNumber>119590</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
-      <StartupTime>1716869120</StartupTime>
+      <StartupTime>1717224356</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -801,7 +801,7 @@ false Zulu
 14643||10|C|G
 14643||-9223372036854775808|U|G
 14643||10|U|G</Grants>
-      <IntrospectionStateNumber>119309</IntrospectionStateNumber>
+      <IntrospectionStateNumber>119590</IntrospectionStateNumber>
       <ObjectId>68067</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4269,12 +4269,471 @@ false Zulu
     <schema id="275" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>119309</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-06-01.12:01:14.855</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-06-01.06:01:15</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>119590</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2024-06-01.16:39:08.607</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-06-01.10:39:08</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
+    <sequence id="276" parent="275" name="doctor_id_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>70111</ObjectId>
+      <SequenceIdentity>1(9)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>119577</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="277" parent="275" name="medical_history_id_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>70121</ObjectId>
+      <SequenceIdentity>1(2)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>119578</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="278" parent="275" name="patient_id_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>70130</ObjectId>
+      <SequenceIdentity>1(3)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>119579</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="279" parent="275" name="work_schedule_id_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>70139</ObjectId>
+      <SequenceIdentity>1(1)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>119580</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="280" parent="275" name="administrator">
+      <ObjectId>70104</ObjectId>
+      <StateNumber>119576</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="281" parent="275" name="doctor">
+      <ObjectId>70112</ObjectId>
+      <StateNumber>119581</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="282" parent="275" name="medical_history">
+      <ObjectId>70122</ObjectId>
+      <StateNumber>119581</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="283" parent="275" name="patient">
+      <ObjectId>70131</ObjectId>
+      <StateNumber>119582</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="284" parent="275" name="work_schedule">
+      <ObjectId>70140</ObjectId>
+      <StateNumber>119583</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="285" parent="280" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>119576</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="286" parent="280" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>119576</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="287" parent="280" name="username">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>119576</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="288" parent="280" name="administrator_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70109</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119576</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="289" parent="280" name="administrator_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70110</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119576</StateNumber>
+      <UnderlyingIndexId>70109</UnderlyingIndexId>
+    </key>
+    <check id="290" parent="281" name="doctor_specialty_check">
+      <ColNames>specialty</ColNames>
+      <ObjectId>70116</ObjectId>
+      <Predicate>(specialty)::text = ANY ((ARRAY[&apos;DENTIST&apos;::character varying, &apos;SURGEON&apos;::character varying, &apos;PEDIATRICIAN&apos;::character varying, &apos;NEUROLOGIST&apos;::character varying, &apos;CARDIOLOGIST&apos;::character varying, &apos;ONCOLOGIST&apos;::character varying, &apos;PSYCHIATRIST&apos;::character varying, &apos;OTHER&apos;::character varying])::text[])</Predicate>
+      <StateNumber>119577</StateNumber>
+    </check>
+    <column id="291" parent="281" name="salary">
+      <DasType>double precision|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>701</TypeId>
+    </column>
+    <column id="292" parent="281" name="date_birthday">
+      <DasType>timestamp(6)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="293" parent="281" name="employment_start_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="294" parent="281" name="id">
+      <DasType>bigint|0s</DasType>
+      <DefaultExpression>nextval(&apos;doctor_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>119577</StateNumber>
+      <SequenceId>70111</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="295" parent="281" name="inn">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="296" parent="281" name="first_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="297" parent="281" name="last_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="298" parent="281" name="second_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="299" parent="281" name="address">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>9</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="300" parent="281" name="education">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>10</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="301" parent="281" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>11</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="302" parent="281" name="emergency_contact">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>12</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="303" parent="281" name="experience">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>13</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="304" parent="281" name="gender">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>14</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="305" parent="281" name="medical_degree">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>15</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="306" parent="281" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>16</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="307" parent="281" name="phone_number">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>17</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="308" parent="281" name="photo_url">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>18</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="309" parent="281" name="specialty">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>19</Position>
+      <StateNumber>119577</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="310" parent="281" name="doctor_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70119</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119577</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="311" parent="281" name="doctor_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70120</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119577</StateNumber>
+      <UnderlyingIndexId>70119</UnderlyingIndexId>
+    </key>
+    <column id="312" parent="282" name="data">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>119578</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="313" parent="282" name="doctor_id">
+      <DasType>bigint|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>119578</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="314" parent="282" name="id">
+      <DasType>bigint|0s</DasType>
+      <DefaultExpression>nextval(&apos;medical_history_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>119578</StateNumber>
+      <SequenceId>70121</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="315" parent="282" name="patient_id">
+      <DasType>bigint|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>119578</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="316" parent="282" name="complaint">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>119578</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="317" parent="282" name="diagnosis">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>119578</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="318" parent="282" name="fkk5218vqnnor93qe67f1syytsb">
+      <ColNames>doctor_id</ColNames>
+      <ObjectId>70147</ObjectId>
+      <StateNumber>119581</StateNumber>
+      <RefKeyColPositions>4</RefKeyColPositions>
+      <RefTableId>70112</RefTableId>
+    </foreign-key>
+    <foreign-key id="319" parent="282" name="fka2kl5eko3q0ly2ktdt2pratik">
+      <ColNames>patient_id</ColNames>
+      <ObjectId>70152</ObjectId>
+      <StateNumber>119582</StateNumber>
+      <RefKeyColPositions>2</RefKeyColPositions>
+      <RefTableId>70131</RefTableId>
+    </foreign-key>
+    <index id="320" parent="282" name="medical_history_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70128</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119578</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="321" parent="282" name="medical_history_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70129</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119578</StateNumber>
+      <UnderlyingIndexId>70128</UnderlyingIndexId>
+    </key>
+    <column id="322" parent="283" name="date_birthday">
+      <DasType>timestamp(6)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="323" parent="283" name="id">
+      <DasType>bigint|0s</DasType>
+      <DefaultExpression>nextval(&apos;patient_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>119579</StateNumber>
+      <SequenceId>70130</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="324" parent="283" name="inn">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="325" parent="283" name="first_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="326" parent="283" name="last_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="327" parent="283" name="second_name">
+      <DasType>varchar(100)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="328" parent="283" name="address">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="329" parent="283" name="emergency_contact">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="330" parent="283" name="gender">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>9</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="331" parent="283" name="insurance_number">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>10</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="332" parent="283" name="phone_number">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>11</Position>
+      <StateNumber>119579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="333" parent="283" name="patient_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70137</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119579</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="334" parent="283" name="patient_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70138</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119579</StateNumber>
+      <UnderlyingIndexId>70137</UnderlyingIndexId>
+    </key>
+    <check id="335" parent="284" name="work_schedule_day_of_week_check">
+      <ColNames>day_of_week</ColNames>
+      <ObjectId>70144</ObjectId>
+      <Predicate>(day_of_week)::text = ANY ((ARRAY[&apos;MONDAY&apos;::character varying, &apos;TUESDAY&apos;::character varying, &apos;WEDNESDAY&apos;::character varying, &apos;THURSDAY&apos;::character varying, &apos;FRIDAY&apos;::character varying])::text[])</Predicate>
+      <StateNumber>119580</StateNumber>
+    </check>
+    <column id="336" parent="284" name="end_time">
+      <DasType>time(6)|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>119580</StateNumber>
+      <TypeId>1083</TypeId>
+    </column>
+    <column id="337" parent="284" name="start_time">
+      <DasType>time(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>119580</StateNumber>
+      <TypeId>1083</TypeId>
+    </column>
+    <column id="338" parent="284" name="doctor_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>119580</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="339" parent="284" name="id">
+      <DasType>bigint|0s</DasType>
+      <DefaultExpression>nextval(&apos;work_schedule_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>119580</StateNumber>
+      <SequenceId>70139</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="340" parent="284" name="day_of_week">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>119580</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="341" parent="284" name="fkm6rnr4msvl5covh0vv738iiqp">
+      <ColNames>doctor_id</ColNames>
+      <ObjectId>70157</ObjectId>
+      <StateNumber>119583</StateNumber>
+      <RefKeyColPositions>4</RefKeyColPositions>
+      <RefTableId>70112</RefTableId>
+    </foreign-key>
+    <index id="342" parent="284" name="work_schedule_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70145</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119580</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="343" parent="284" name="work_schedule_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>70146</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>119580</StateNumber>
+      <UnderlyingIndexId>70145</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>
