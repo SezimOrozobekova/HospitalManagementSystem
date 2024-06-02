@@ -4,34 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b57f43d-2874-4826-ae1b-6077b0acf42a" name="Changes" comment="Main for Doctor (Doctor can search patient using INN), Patient info">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorTabController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/mainadmin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/medhistory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5b57f43d-2874-4826-ae1b-6077b0acf42a" name="Changes" comment="Branch Doctor have been finished and admin main page started. Group Doctor by speciality">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorbyspec.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorinfoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/HospitalManagementSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/HospitalManagementSystemApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainDoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainDoctorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/PatientInfoForDocController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/PatientInfoForDocController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/bootstrap/BootstrapData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/bootstrap/BootstrapData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/config/ScreenLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/config/ScreenLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/MedicalHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/MedicalHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Specialty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Specialty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/MedicalHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/MedicalHistoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/MedicalHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/MedicalHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorinfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorinfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/maindoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/maindoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/patientinfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/patientinfo.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
         <option value="FxmlFile" />
       </list>
     </option>
@@ -71,6 +50,7 @@
     "git-widget-placeholder": "master",
     "last_directory_selection": "C:/Users/Sezim/IdeaProjects/HospitalManagementSystem/src/main/java/com/example/hospitalmanagementsystem",
     "last_opened_file_path": "C:/Users/Sezim/IdeaProjects/HospitalManagementSystem/src/main/resources",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -145,7 +125,7 @@
       <workItem from="1717223206794" duration="342000" />
       <workItem from="1717224593265" duration="23463000" />
       <workItem from="1717252066443" duration="13975000" />
-      <workItem from="1717269828138" duration="21700000" />
+      <workItem from="1717269828138" duration="28623000" />
     </task>
     <task id="LOCAL-00001" summary="One screen. Can see list of doctor">
       <option name="closed" value="true" />
@@ -163,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717253709946</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Branch Doctor have been finished and admin main page started. Group Doctor by speciality">
+      <option name="closed" value="true" />
+      <created>1717319503026</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717319503026</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +171,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="One screen. Can see list of doctor" />
     <MESSAGE value="Main for Doctor (Doctor can search patient using INN), Patient info" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main for Doctor (Doctor can search patient using INN), Patient info" />
+    <MESSAGE value="Branch Doctor have been finished and admin main page started. Group Doctor by speciality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Branch Doctor have been finished and admin main page started. Group Doctor by speciality" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

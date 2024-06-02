@@ -151,6 +151,7 @@ public class BootstrapData implements ApplicationRunner {
                             .medicalDegree("MD")
                             .education("КГМА им. И. К. Ахунбаева")
                             .salary(98000.0)
+                            .photoUrl("doctor (4).png")
                             .build(),
                     Doctor.builder()
                             .inn(1592637480L)
@@ -177,6 +178,7 @@ public class BootstrapData implements ApplicationRunner {
                             .lastName("Темиров")
                             .firstName("Алишер")
                             .gender("Male")
+                            .photoUrl("doctor (4).png")
                             .dateBirthday(LocalDateTime.of(1987, 6, 22, 0, 0))
                             .address("456 Жапарова, Бишкек")
                             .phoneNumber("555-7890")
@@ -208,7 +210,9 @@ public class BootstrapData implements ApplicationRunner {
                             .salary(94000.0)
                             .photoUrl("doctor (1).png")
                             .build()
+
             );
+
             doctorRepository.saveAll(doctors);
         }
 
