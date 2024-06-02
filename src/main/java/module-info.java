@@ -18,7 +18,7 @@ module com.example.hospitalmanagementsystem {
 
     // Открытие пакетов для необходимых модулей
     opens com.example.hospitalmanagementsystem to spring.core, spring.beans, spring.context, javafx.fxml;
-    opens com.example.hospitalmanagementsystem.entity to org.hibernate.validator, org.hibernate.orm.core, spring.core, spring.beans, spring.context;
+    opens com.example.hospitalmanagementsystem.entity to org.hibernate.validator, org.hibernate.orm.core, spring.core, spring.beans, spring.context,javafx.base;
     opens com.example.hospitalmanagementsystem.bootstrap to spring.core, spring.beans, spring.context;
     opens com.example.hospitalmanagementsystem.exception to spring.core, spring.beans, spring.context;
     opens com.example.hospitalmanagementsystem.repository to spring.core, spring.beans, spring.context;

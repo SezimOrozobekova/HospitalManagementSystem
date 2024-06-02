@@ -8,5 +8,9 @@ public enum Specialty {
     CARDIOLOGIST,
     ONCOLOGIST,
     PSYCHIATRIST,
+
+    Director,
     OTHER;
+
+
 }

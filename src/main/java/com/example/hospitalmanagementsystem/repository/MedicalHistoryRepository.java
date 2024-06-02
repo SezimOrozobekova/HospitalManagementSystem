@@ -12,4 +12,5 @@ public interface MedicalHistoryRepository extends JpaRepository<MedicalHistory,L
 
     List<MedicalHistory> findByPatientId(Long patientId);
     List<MedicalHistory> findByDoctorId(Long doctorId);
+
 }

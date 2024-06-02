@@ -3,6 +3,7 @@ package com.example.hospitalmanagementsystem;
 import com.example.hospitalmanagementsystem.config.ScreenLoader;
 import com.example.hospitalmanagementsystem.entity.Administrator;
 import com.example.hospitalmanagementsystem.entity.Doctor;
+import com.example.hospitalmanagementsystem.entity.Patient;
 import com.example.hospitalmanagementsystem.service.AdministratorService;
 import com.example.hospitalmanagementsystem.service.DoctorService;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Optional;
 
 @Controller
@@ -31,10 +33,13 @@ public class MainController {
     @FXML
     private ImageView logoImage;
 
+    @Autowired
     private final DoctorService doctorService;
     private final AdministratorService administratorService;
 
     private Stage primaryStage;
+
+    @Autowired
     private ScreenLoader screenLoader;
 
     @Autowired
@@ -48,10 +53,6 @@ public class MainController {
         this.primaryStage = primaryStage;
         this.screenLoader.setStage(primaryStage);
     }
-
-
-
-
 
 
     @FXML
@@ -70,8 +71,11 @@ public class MainController {
 
             Optional<Doctor> doctorOptional = doctorService.getDoctorByInnAndPassword(Long.valueOf(username), password);
             if (doctorOptional.isPresent()) {
+                Doctor doc = doctorOptional.get();
                 showAlert("Success", "Logged in as Doctor.");
-                screenLoader.loadDoctorMainScreen();
+                System.out.println(username);
+                screenLoader.loadDoctorMainScreen(doc.getInn());
+
                 return;
             }
 

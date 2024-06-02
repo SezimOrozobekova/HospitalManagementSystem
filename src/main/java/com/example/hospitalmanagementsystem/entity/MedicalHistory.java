@@ -3,6 +3,7 @@ package com.example.hospitalmanagementsystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.lang.constant.Constable;
 import java.time.LocalDateTime;
 
 @Table
@@ -31,5 +32,15 @@ public class MedicalHistory {
     private String diagnosis;
 
     private LocalDateTime data;
+
+    // Get the doctor's name
+    public String getDoctorInn() {
+        return doctor != null ? doctor.getInn() + " " : "";
+    }
+
+    // Get the doctor's profession
+    public String getSpeciality() {
+        return doctor != null ? "" + doctor.getSpecialty() : " ";
+    }
 
 }

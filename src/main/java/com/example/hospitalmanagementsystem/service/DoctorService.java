@@ -4,12 +4,15 @@ import com.example.hospitalmanagementsystem.entity.Doctor;
 import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.exception.ResourceNotFoundException;
 import com.example.hospitalmanagementsystem.repository.DoctorRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DoctorService {
@@ -42,13 +45,18 @@ public class DoctorService {
         return doctorRepository.findAllBySpecialty(specialty);
     }
 
-    public Doctor updateDoctor(Long inn, Doctor updatedDoctor) {
-        return doctorRepository.findByInn(inn)
+    public Map<Specialty, Long> getDoctorCountBySpecialty() {
+        return doctorRepository.findAll().stream()
+                .collect(Collectors.groupingBy(Doctor::getSpecialty, Collectors.counting()));
+    }
+
+    public Doctor updateDoctor(Doctor updatedDoctor) {
+        return doctorRepository.findByInn(updatedDoctor.getInn())
                 .map(existingDoctor -> {
                     updatedDoctor.setId(existingDoctor.getId());
                     return doctorRepository.save(updatedDoctor);
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("Doctor with INN " + inn + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor with INN " + updatedDoctor.getInn() + " not found"));
     }
 
     public void deleteDoctor(Long inn) {

@@ -32,7 +32,6 @@ public class HospitalManagementSystemApplication extends Application {
 
         screenLoader = springContext.getBean(ScreenLoader.class);
         screenLoader.setStage(primaryStage);
-
         screenLoader.loadMainScreen();
     }
 

@@ -41,6 +41,7 @@ public class MedicalHistoryService {
         }
     }
 
+
     public List<MedicalHistory> getMedicalHistoriesByDoctorId(Long doctorId) {
         try {
             return medicalHistoryRepository.findByDoctorId(doctorId);

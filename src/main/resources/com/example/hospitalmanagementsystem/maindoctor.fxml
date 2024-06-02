@@ -7,10 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="680.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.MainDoctorController">
    <children>
-      <ImageView fitHeight="59.0" fitWidth="64.0" layoutX="724.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+   
+
+      <ImageView fx:id="doctorImage" fitHeight="59.0" fitWidth="64.0" layoutX="724.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="277.0" layoutY="274.0" prefHeight="18.0" prefWidth="300.0" text="Найти пациента по ИНН" textFill="#2ea1ff">
          <font>
             <Font size="24.0" />
