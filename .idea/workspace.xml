@@ -4,40 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b57f43d-2874-4826-ae1b-6077b0acf42a" name="Changes" comment="Branch Doctor have been finished and admin main page started. Group Doctor by speciality">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddDoctorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddPatientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorinfoadmin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (2).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (3).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (4).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (5).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/doctor (6).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/signinphoto.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7c949dcc-4ab1-4137-ad97-175d94af6477.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7c949dcc-4ab1-4137-ad97-175d94af6477.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5b57f43d-2874-4826-ae1b-6077b0acf42a" name="Changes" comment="Branch Administrator. Doctor field">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/PatientInfoForAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/patientinfoadmin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddDoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddDoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddPatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/AddPatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorProfileAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorTabController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/DoctorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainDoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/MainDoctorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/PatientInfoForDocController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/PatientInfoForDocController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/config/ScreenLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/config/ScreenLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Doctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/entity/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/DoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/PatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/repository/PatientRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hospitalmanagementsystem/service/PatientService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/adddoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/adddoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/addpatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/addpatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctor.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorbyspec.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorbyspec.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorinfoadmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/doctorinfoadmin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/mainadmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/mainadmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/medhistory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/medhistory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/speiality.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hospitalmanagementsystem/patient.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +146,7 @@
       <workItem from="1717353296729" duration="440000" />
       <workItem from="1717355180225" duration="458000" />
       <workItem from="1717385097956" duration="17161000" />
-      <workItem from="1717403475780" duration="296000" />
+      <workItem from="1717403475780" duration="20145000" />
     </task>
     <task id="LOCAL-00001" summary="One screen. Can see list of doctor">
       <option name="closed" value="true" />
@@ -186,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717319503026</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Branch Administrator. Doctor field">
+      <option name="closed" value="true" />
+      <created>1717404095618</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717404095618</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +201,8 @@
     <MESSAGE value="One screen. Can see list of doctor" />
     <MESSAGE value="Main for Doctor (Doctor can search patient using INN), Patient info" />
     <MESSAGE value="Branch Doctor have been finished and admin main page started. Group Doctor by speciality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Branch Doctor have been finished and admin main page started. Group Doctor by speciality" />
+    <MESSAGE value="Branch Administrator. Doctor field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Branch Administrator. Doctor field" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

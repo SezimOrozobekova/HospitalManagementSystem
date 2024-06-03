@@ -77,6 +77,9 @@ public class AddDoctorController {
     @FXML
     private TextField innField;
 
+    @FXML
+    private TextField passwordField;
+
     @Autowired
     private ScreenLoader screenLoader;
 
@@ -103,7 +106,7 @@ public class AddDoctorController {
             specialtyMenuButton.getItems().add(menuItem);
         }
         datePicker.setValue(LocalDate.now());
-        genderComboBox.getItems().addAll("Мужской", "Женский", "Другой");
+        genderComboBox.getItems().addAll("Мужской", "Женский");
         addValidation();
         chooseImageButton.setOnAction(event -> chooseImage());
     }
@@ -129,6 +132,17 @@ public class AddDoctorController {
             return;
         }
 
+        String innText = innField.getText();
+        Long inn = null;
+        if (!innText.isBlank()) {
+            try {
+                inn = Long.valueOf(innText);
+            } catch (NumberFormatException e) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "INN must be a valid number.");
+                return;
+            }
+        }
+
         Doctor doctor = new Doctor();
         doctor.setFirstName(name.getText());
         doctor.setSecondName(secondName.getText());
@@ -137,14 +151,47 @@ public class AddDoctorController {
         doctor.setAddress(addressField.getText());
         doctor.setPhoneNumber(phoneNumberField.getText());
         doctor.setEmergencyContact(emergencyContactField.getText());
-        doctor.setSpecialty(Specialty.valueOf(specialtyMenuButton.getText()));
+
+        // Validate specialty
+        String specialtyText = specialtyMenuButton.getText();
+        Specialty specialty = null;
+        try {
+            specialty = Specialty.valueOf(specialtyText);
+        } catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please select a valid specialty.");
+            return;
+        }
+        doctor.setSpecialty(specialty);
+
+        // Validate gender
+        String genderText = genderComboBox.getValue();
+        if (genderText == null || genderText.isBlank()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please select a valid gender.");
+            return;
+        }
+        doctor.setGender(genderText);
+
         doctor.setEmail(emailField.getText());
         doctor.setEducation(educationField.getText());
-        doctor.setSalary(Double.parseDouble(salaryField.getText()));
+
+        // Validate salary
+        String salaryText = salaryField.getText();
+        if (salaryText == null || salaryText.isBlank()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Salary field cannot be empty.");
+            return;
+        }
+        try {
+            double salary = Double.parseDouble(salaryText);
+            doctor.setSalary(salary);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Salary must be a valid number.");
+            return;
+        }
+
         doctor.setPhotoUrl(photoUrl);
-        doctor.setGender(genderComboBox.getValue());
         doctor.setMedicalDegree(medicalDegreeField.getText());
-        doctor.setInn(Long.valueOf(innField.getText()));
+        doctor.setInn(inn);
+        doctor.setPassword(passwordField.getText());
 
         Set<ConstraintViolation<Doctor>> violations = validator.validate(doctor);
 
@@ -160,6 +207,7 @@ public class AddDoctorController {
             showAlert(Alert.AlertType.INFORMATION, "Doctor Saved", "Doctor has been saved successfully.");
         }
     }
+
 
     @FXML
     private void chooseImage() {

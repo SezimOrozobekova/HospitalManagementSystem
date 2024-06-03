@@ -22,6 +22,7 @@ public class Doctor {
     @NotNull(message = "INN cannot be null")
     private Long inn;
 
+    @NotBlank(message =  "Password is required")
     private String password;
 
     @NotBlank(message = "Last name is required")
@@ -74,6 +75,9 @@ public class Doctor {
     private String education;
 
     private double salary;
+
+    @Builder.Default
+    private Boolean active = Boolean.TRUE;
 
 
 

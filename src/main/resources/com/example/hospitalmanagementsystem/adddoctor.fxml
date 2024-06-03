@@ -94,46 +94,48 @@
                   </Label>
                   <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
-                  <Label text="Образование" GridPane.rowIndex="11">
+                  <Label text="Образование" GridPane.rowIndex="12">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="educationField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <TextField fx:id="educationField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
 
-                  <Label text="Зарплата" GridPane.rowIndex="12">
+                  <Label text="Зарплата" GridPane.rowIndex="13">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="salaryField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <TextField fx:id="salaryField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
 
-                  <Label text="Пол" GridPane.rowIndex="13">
+                  <Label text="Пол" GridPane.rowIndex="14">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="genderComboBox" prefHeight="26.0" prefWidth="298.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <ComboBox fx:id="genderComboBox" prefHeight="26.0" prefWidth="298.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
 
-                  <Label text="Медицинская степень" GridPane.rowIndex="14">
+                  <Label text="Медицинская степень" GridPane.rowIndex="15">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="medicalDegreeField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="medicalDegreeField" GridPane.columnIndex="1" GridPane.rowIndex="15" />
 
-                  <Label text="Фотография" GridPane.rowIndex="15">
+                  <Label text="Фотография" GridPane.rowIndex="16">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="25.0" prefWidth="298.0" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="15">
-                     <Button fx:id="chooseImageButton" mnemonicParsing="false" onAction="#chooseImage" text="Choose image" />
+                  <HBox prefHeight="25.0" prefWidth="298.0" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                     <Button fx:id="chooseImageButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseImage" text="Choose image" />
                      <ImageView fx:id="photoImageView" fitHeight="100.0" fitWidth="100" />
                   </HBox>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: lightgreen;" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: lightgreen;" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="18" />
                   <Label text="ИНН" GridPane.rowIndex="4" />
                   <TextField fx:id="innField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Password" GridPane.rowIndex="11" />
+                  <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
                   <columnConstraints>
                      <ColumnConstraints />
@@ -141,6 +143,7 @@
                      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
                   <rowConstraints>
+                     <RowConstraints />
                      <RowConstraints />
                      <RowConstraints />
                      <RowConstraints />

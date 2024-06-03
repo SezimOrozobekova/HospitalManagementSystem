@@ -25,18 +25,18 @@ public class DoctorService {
     }
 
     public Optional<Doctor> getDoctorByInn(Long inn) {
-        return Optional.ofNullable(doctorRepository.findByInn(inn)
+        return Optional.ofNullable(doctorRepository.findByInnAndActiveTrue(inn)
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor with INN " + inn + " not found")));
     }
 
     public Optional<Doctor> getDoctorByInnAndPassword(Long inn, String password) {
-        return doctorRepository.findByInnAndPassword(inn, password);
+        return doctorRepository.findByInnAndPasswordAndActiveTrue(inn, password);
 
 
     }
 
     public List<Doctor> getDoctorsBySpecialty(Specialty specialty) {
-        return doctorRepository.findAllBySpecialty(specialty);
+        return doctorRepository.findAllBySpecialtyAndActiveTrue(specialty);
     }
 
     public Doctor createDoctor(Doctor doctor) {
@@ -50,12 +50,12 @@ public class DoctorService {
 
 
     public Map<Specialty, Long> getDoctorCountBySpecialty() {
-        return doctorRepository.findAll().stream()
+        return doctorRepository.findAllByActiveTrue().stream()
                 .collect(Collectors.groupingBy(Doctor::getSpecialty, Collectors.counting()));
     }
 
     public Doctor updateDoctor(Doctor updatedDoctor) {
-        return doctorRepository.findByInn(updatedDoctor.getInn())
+        return doctorRepository.findByInnAndActiveTrue(updatedDoctor.getInn())
                 .map(existingDoctor -> {
                     updatedDoctor.setId(existingDoctor.getId());
                     return doctorRepository.save(updatedDoctor);
@@ -64,7 +64,7 @@ public class DoctorService {
     }
 
     public void deleteDoctor(Long inn) {
-        doctorRepository.findByInn(inn).ifPresentOrElse(
+        doctorRepository.findByInnAndActiveTrue(inn).ifPresentOrElse(
                 doctorRepository::delete,
                 () -> {
                     throw new ResourceNotFoundException("Doctor with INN " + inn + " not found");
@@ -72,6 +72,6 @@ public class DoctorService {
     }
 
     public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
+        return doctorRepository.findAllByActiveTrue();
     }
 }

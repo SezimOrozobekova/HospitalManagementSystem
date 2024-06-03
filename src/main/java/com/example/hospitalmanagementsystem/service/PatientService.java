@@ -19,8 +19,10 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
+
+
     public Optional<Patient> getPatientByInn(Long inn) {
-        return Optional.ofNullable(patientRepository.findByInn(inn)
+        return Optional.ofNullable(patientRepository.findByInnAndActiveTrue(inn)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient with INN " + inn + " not found")));
     }
 
@@ -34,14 +36,13 @@ public class PatientService {
 
     public List<Patient> getAllPatients() {
         try {
-            return patientRepository.findAll();
+            return patientRepository.findAllByActiveTrue();
         } catch (Exception ex) {
             throw new RuntimeException("Failed to retrieve patients", ex);
         }
     }
-
     public Patient updatePatient(Long inn, Patient updatedPatient) {
-        return patientRepository.findByInn(inn)
+        return patientRepository.findByInnAndActiveTrue(inn)
                 .map(existingPatient -> {
                     updatedPatient.setId(existingPatient.getId());
                     return patientRepository.save(updatedPatient);
@@ -49,9 +50,13 @@ public class PatientService {
                 .orElseThrow(() -> new ResourceNotFoundException("Patient with INN " + inn + " not found"));
     }
 
+
     public void deletePatient(Long inn) {
-        patientRepository.findByInn(inn).ifPresentOrElse(
-                patientRepository::delete,
+        patientRepository.findByInnAndActiveTrue(inn).ifPresentOrElse(
+                patient -> {
+                    patient.setActive(Boolean.FALSE);
+                    patientRepository.save(patient);
+                },
                 () -> {
                     throw new ResourceNotFoundException("Patient with INN " + inn + " not found");
                 });

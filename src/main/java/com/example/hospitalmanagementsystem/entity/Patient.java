@@ -1,15 +1,8 @@
 package com.example.hospitalmanagementsystem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import jakarta.validation.constraints.*;
 import lombok.*;
-
-
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,13 +34,14 @@ public class Patient {
     private String secondName;
 
     @NotNull(message = "Date of birth cannot be null")
-    @PastOrPresent
+    @PastOrPresent(message = "Date of birth cannot be in the future")
     private LocalDateTime dateBirthday;
 
     @NotBlank(message = "Address is required")
     @Size(max = 255, message = "Address must be less than or equal to 255 characters")
     private String address;
 
+    @NotBlank(message = "Phone is required")
     private String phoneNumber;
 
     private String emergencyContact;
@@ -56,13 +50,15 @@ public class Patient {
     private String insuranceNumber;
 
     @NotBlank(message = "Gender is required")
-    private String gender;  // Assuming gender is a string like "Male" or "Female"
+    private String gender;
 
     @OneToMany(mappedBy = "patient")
     private List<MedicalHistory> medicalHistories;
 
+    @Builder.Default
+    private Boolean active = Boolean.TRUE;
 
-
-
-
+    public String getFio() {
+        return firstName + " " + secondName + " " + lastName;
+    }
 }

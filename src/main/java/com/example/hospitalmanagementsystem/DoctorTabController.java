@@ -1,20 +1,22 @@
 package com.example.hospitalmanagementsystem;
 
 import com.example.hospitalmanagementsystem.config.ScreenLoader;
+import com.example.hospitalmanagementsystem.entity.Doctor;
+import com.example.hospitalmanagementsystem.entity.Patient;
 import com.example.hospitalmanagementsystem.entity.Specialty;
-import com.example.hospitalmanagementsystem.service.AdministratorService;
 import com.example.hospitalmanagementsystem.service.DoctorService;
+import com.example.hospitalmanagementsystem.service.PatientService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -26,7 +28,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class DoctorTabController {
@@ -44,10 +46,26 @@ public class DoctorTabController {
     @Autowired
     private ScreenLoader screenLoader;
 
+    @FXML
+    private TableView<Patient> patientTableView;
+
+    @FXML
+    private TableColumn<Patient, Long> innColumn;
+
+    @FXML
+    private TableColumn<Patient, String> fioColumn;
+
+    @FXML
+    private TableColumn<Patient, String> emergencyPhoneColumn;
+
+
+    private final PatientService patientService;
+
     @Autowired
-    public DoctorTabController(DoctorService doctorService, ApplicationContext applicationContext) {
+    public DoctorTabController(DoctorService doctorService, PatientService patientService, ApplicationContext applicationContext) {
         this.doctorService = doctorService;
         this.applicationContext = applicationContext;
+        this.patientService = patientService;
     }
 
     public void setStage(Stage stage) {
@@ -71,20 +89,43 @@ public class DoctorTabController {
 
     @FXML
     private void handleFindPatientButton(ActionEvent event) {
+
         try {
             long inn = Long.parseLong(innTextField.getText().trim());
-            screenLoader.loadPatientInfoAdminScreen(inn);
+            Optional<Patient> patientOptional = patientService.getPatientByInn(inn);
+            if (patientOptional.isPresent()) {
+                Patient pat = patientOptional.get();
+                screenLoader.loadPatientInfoAdminScreen(inn);
+            }
         } catch (NumberFormatException e) {
-            // Handle if input is not a valid number
-            System.out.println("INN must be a valid number.");
-            // Optionally, you can show an alert or message to the user
+            showAlert("Invalid INN", "Please enter a valid number for INN.");
+        } catch (Exception e) {
+            showAlert("Error", "Failed to search for patient: " + e.getMessage());
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void loadPatientData() {
+        ObservableList<Patient> patientList = FXCollections.observableArrayList(patientService.getAllPatients());
+        patientTableView.setItems(patientList);
     }
 
     @FXML
     public void initialize() {
         loadDoctorSpecialties();
         innTextField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().matches("\\d*") ? change : null));
+
+        loadPatientData();
+        innColumn.setCellValueFactory(new PropertyValueFactory<>("inn"));
+        fioColumn.setCellValueFactory(new PropertyValueFactory<>("fio"));
+        emergencyPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("emergencyContact"));
 
     }
 
@@ -144,15 +185,9 @@ public class DoctorTabController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/doctorbyspec.fxml"));
         loader.setControllerFactory(applicationContext::getBean);
         Parent root = loader.load();
-
-        // Get the controller and pass the specialty
         DoctorViewController controller = loader.getController();
         controller.setSpecialty(specialty);
-
-        // Get the current stage from the event source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new scene to the current stage
         stage.setScene(new Scene(root));
         stage.show();
     }

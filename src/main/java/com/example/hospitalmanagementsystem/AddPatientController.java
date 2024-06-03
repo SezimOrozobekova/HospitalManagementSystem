@@ -2,11 +2,7 @@ package com.example.hospitalmanagementsystem;
 
 import com.example.hospitalmanagementsystem.config.ScreenLoader;
 import com.example.hospitalmanagementsystem.entity.Patient;
-import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.service.PatientService;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,7 +11,11 @@ import javafx.scene.control.Alert.AlertType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Controller
@@ -63,10 +63,6 @@ public class AddPatientController {
         addValidation();
     }
 
-    public void onBackButton(Event event){
-        screenLoader.loadAdministratorScreen();
-    }
-
     @Autowired
     public AddPatientController(PatientService patientService) {
         this.patientService = patientService;
@@ -80,36 +76,36 @@ public class AddPatientController {
         addressField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > 255 ? null : change));
         phoneNumberField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().matches("\\d*") ? change : null));
         emergencyTelField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().matches("\\d*") ? change : null));
-        phoneNumberField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().matches("\\d*") ? change : null));
         innField.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().matches("\\d*") ? change : null));
     }
 
     @FXML
     public void handleAddPatient(ActionEvent event) {
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String middleName = middleNameField.getText();
+        String innText = innField.getText();
+        Long inn = null;
+        if (!innText.isBlank()) {
+            try {
+                inn = Long.valueOf(innText);
+            } catch (NumberFormatException e) {
+                showAlert(AlertType.ERROR, "Validation Error", "INN must be a valid number.");
+                return;
+            }
+        }
+        Patient patient = new Patient();
+        patient.setFirstName(firstNameField.getText());
+        patient.setLastName(lastNameField.getText());
+        patient.setSecondName(middleNameField.getText());
+        patient.setAddress(addressField.getText());
+        patient.setPhoneNumber(phoneNumberField.getText());
+        patient.setEmergencyContact(emergencyTelField.getText());
+        patient.setInsuranceNumber(insuranceNumberField.getText());
+        patient.setGender(genderComboBox.getValue());
+        patient.setInn(inn);
+
         LocalDate birthdate = birthdatePicker.getValue();
-        String address = addressField.getText();
-        String phoneNumber = phoneNumberField.getText();
-        String emergencyTel = emergencyTelField.getText();
-        String insuranceNumber = insuranceNumberField.getText();
-        String gender = genderComboBox.getValue();
-
-
-        // Validate patient data
-        Patient patient = Patient.builder()
-                .firstName(firstName)
-                .lastName(lastName)
-                .secondName(middleName)
-                .dateBirthday(birthdate != null ? birthdate.atStartOfDay() : null)
-                .address(address)
-                .phoneNumber(phoneNumber)
-                .emergencyContact(emergencyTel)
-                .insuranceNumber(insuranceNumber)
-                .gender(gender)
-                .inn(Long.valueOf(innField.getText()))
-                .build();
+        if (birthdate != null) {
+            patient.setDateBirthday(birthdate.atStartOfDay());
+        }
 
         Set<ConstraintViolation<Patient>> violations = validator.validate(patient);
         if (!violations.isEmpty()) {
@@ -118,17 +114,11 @@ public class AddPatientController {
                 errorMessage.append(violation.getMessage()).append("\n");
             }
             showAlert(AlertType.ERROR, "Validation Error", errorMessage.toString());
-            return;
+        } else {
+            patientService.createPatient(patient);
+            clearFields();
+            showAlert(AlertType.INFORMATION, "Patient Added", "Patient successfully added.");
         }
-
-        // Call service to create patient
-        patientService.createPatient(patient);
-
-        // Clear input fields
-        clearFields();
-
-        // Show success message
-        showAlert(AlertType.INFORMATION, "Patient Added", "Patient successfully added.");
     }
 
     private void clearFields() {
@@ -149,5 +139,10 @@ public class AddPatientController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void onBackButton(Event event) {
+        screenLoader.loadAdministratorScreen();
     }
 }

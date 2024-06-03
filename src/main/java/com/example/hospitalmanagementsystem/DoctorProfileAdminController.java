@@ -129,7 +129,18 @@ public class DoctorProfileAdminController {
         }
 
     }
+    @FXML
+    private void onDeleteButton(ActionEvent event){
+        Optional<Doctor> doctorOptional = doctorService.getDoctorByInn(doctorInn);
+        if (doctorOptional.isPresent()) {
+            Doctor doctor = doctorOptional.get();
+            doctor.setActive(Boolean.FALSE);
+            doctorService.updateDoctor(doctor);
+            showAlert("Doctor info deleted", "Successfully Deleted");
+            screenLoader.loadAdministratorScreen();
+        }
 
+    }
     private void customInitialize(Long doctorInn) {
         this.doctorInn = doctorInn;
         try {

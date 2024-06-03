@@ -53,16 +53,17 @@ public class DoctorViewController implements Initializable {
         int numRows = (int) Math.ceil((double) doctors.size() / maxColumns);
 
         for (Doctor doctor : doctors) {
-            AnchorPane anchorPane = createDoctorAnchorPane(doctor);
 
-            // Add the AnchorPane to the GridPane
-            doctorGridPane.add(anchorPane, col, row);
+                AnchorPane anchorPane = createDoctorAnchorPane(doctor);
+                doctorGridPane.add(anchorPane, col, row);
+                col++;
+                if (col == maxColumns) {
+                    col = 0;
+                    row++;
+                }
 
-            col++;
-            if (col == maxColumns) {
-                col = 0;
-                row++;
-            }
+
+
         }
 
 

@@ -37,7 +37,8 @@ public class ScreenLoader {
 
     public void loadMainScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/mainadmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/main" +
+                    ".fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -207,11 +208,11 @@ public class ScreenLoader {
 
     public void loadPatientInfoAdminScreen(Long patientInn) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/patientinfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/patientinfoadmin.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Parent root = loader.load();
 
-            PatientInfoForDocController controller = loader.getController();
+            PatientInfoForAdmin controller = loader.getController();
             controller.setPatientInn(patientInn);
 
             Scene scene = new Scene(root);
