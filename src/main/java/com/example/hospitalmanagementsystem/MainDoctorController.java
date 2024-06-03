@@ -65,11 +65,6 @@ public class MainDoctorController {
         }
     }
 
-    @FXML
-    private void onButtonBack(ActionEvent event){
-        screenLoader.loadDoctorMainScreen(doctorInn);
-    }
-
 
 
 

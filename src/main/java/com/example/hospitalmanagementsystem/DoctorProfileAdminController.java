@@ -2,6 +2,7 @@ package com.example.hospitalmanagementsystem;
 
 import com.example.hospitalmanagementsystem.config.ScreenLoader;
 import com.example.hospitalmanagementsystem.entity.Doctor;
+import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.service.DoctorService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class DoctorProfileController {
+public class DoctorProfileAdminController {
 
     @FXML
     private TextField firstNameField;
@@ -118,8 +119,15 @@ public class DoctorProfileController {
         alert.showAndWait();
     }
     @FXML
-    private void onButtonBack(ActionEvent event){
-        screenLoader.loadDoctorMainScreen(doctorInn);
+    private void onButtonBack(ActionEvent event) throws IOException {
+        Optional<Doctor> doctorOptional = doctorService.getDoctorByInn(doctorInn);
+        if (doctorOptional.isPresent()) {
+            Doctor doctor = doctorOptional.get();
+            Specialty specialty = doctor.getSpecialty();
+            screenLoader.loadDoctorBySpecialty(specialty);
+
+        }
+
     }
 
     private void customInitialize(Long doctorInn) {

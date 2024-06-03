@@ -1,12 +1,12 @@
 package com.example.hospitalmanagementsystem.config;
 
-import com.example.hospitalmanagementsystem.DoctorProfileController;
-import com.example.hospitalmanagementsystem.HistoryController;
-import com.example.hospitalmanagementsystem.MainDoctorController;
-import com.example.hospitalmanagementsystem.PatientInfoForDocController;
+import com.example.hospitalmanagementsystem.*;
+import com.example.hospitalmanagementsystem.entity.Doctor;
+import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.service.AdministratorService;
 import com.example.hospitalmanagementsystem.service.DoctorService;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -37,7 +37,7 @@ public class ScreenLoader {
 
     public void loadMainScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/doctorbyspec.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/mainadmin.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -51,6 +51,8 @@ public class ScreenLoader {
             e.printStackTrace();
         }
     }
+
+
 
     public void loadDoctorInfoScreen(Long doctorInn) {
         try {
@@ -71,6 +73,60 @@ public class ScreenLoader {
             e.printStackTrace();
         }
     }
+    public void loadDoctorInfoForAdminScreen(Doctor doctor) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/doctorinfoadmin.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            Parent root = loader.load();
+
+            DoctorProfileAdminController controller = loader.getController();
+            controller.setDoctorInn(doctor.getInn());
+            Scene scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setTitle("Hospital Management System - Doctor Information");
+            newStage.show();
+            stage.close();
+            stage = newStage;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void  loadAddDoctorScreen(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/adddoctor.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            Parent root = loader.load();
+            Stage adminStage = new Stage();
+            adminStage.setScene(new Scene(root));
+            adminStage.setTitle("Administrator Dashboard");
+            adminStage.show();
+
+            stage.close();
+            stage = adminStage;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void  loadAddPatientScreen(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/addpatient.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            Parent root = loader.load();
+            Stage adminStage = new Stage();
+            adminStage.setScene(new Scene(root));
+            adminStage.setTitle("Administrator Dashboard");
+            adminStage.show();
+
+            stage.close();
+            stage = adminStage;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void loadMedHistoryScreen(Long patientInn, Long doctorInn) {
         try {
@@ -116,7 +172,7 @@ public class ScreenLoader {
 
     public void loadAdministratorScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/doctorinfo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/mainadmin.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Parent root = loader.load();
             Stage adminStage = new Stage();
@@ -147,5 +203,38 @@ public class ScreenLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadPatientInfoAdminScreen(Long patientInn) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/patientinfo.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            Parent root = loader.load();
+
+            PatientInfoForDocController controller = loader.getController();
+            controller.setPatientInn(patientInn);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Hospital Management System - Patient Information");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadDoctorBySpecialty(Specialty specialty) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hospitalmanagementsystem/doctorbyspec.fxml"));
+        loader.setControllerFactory(applicationContext::getBean);
+        Parent root = loader.load();
+
+        // Get the controller and pass the specialty
+        DoctorViewController controller = loader.getController();
+        controller.setSpecialty(specialty);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Hospital Management System - Patient Information");
+        stage.show();
     }
 }

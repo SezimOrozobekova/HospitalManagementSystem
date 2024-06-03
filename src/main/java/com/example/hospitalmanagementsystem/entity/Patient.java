@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lombok.*;
 
 
@@ -58,6 +60,7 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient")
     private List<MedicalHistory> medicalHistories;
+
 
 
 

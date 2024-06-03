@@ -141,4 +141,8 @@ public class PatientInfoForDocController {
     }
 
 
+    public void setPatientInn(Long patientInn) {
+        this.patientInn = patientInn;
+
+    }
 }

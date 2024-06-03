@@ -1,9 +1,14 @@
 package com.example.hospitalmanagementsystem;
 
+import com.example.hospitalmanagementsystem.config.ScreenLoader;
 import com.example.hospitalmanagementsystem.entity.Doctor;
+import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.service.DoctorService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
@@ -15,6 +20,9 @@ import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,13 +36,16 @@ public class DoctorViewController implements Initializable {
     @Autowired
     private DoctorService doctorService;
 
+    @Autowired
+    private ScreenLoader screenLoader;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadDoctors();
+
     }
 
-    private void loadDoctors() {
-        List<Doctor> doctors = doctorService.getAllDoctors();
+    private void loadDoctors(Specialty specialty) {
+        List<Doctor> doctors = doctorService.getDoctorsBySpecialty(specialty);
 
         int col = 0;
         int row = 0;
@@ -57,6 +68,17 @@ public class DoctorViewController implements Initializable {
 
     }
 
+    @FXML
+    private void onButtonBack(ActionEvent event){
+        screenLoader.loadAdministratorScreen();
+    }
+
+    @FXML
+    private void onButtonSignOut(ActionEvent event){
+        screenLoader.loadMainScreen();
+    }
+
+
     private AnchorPane createDoctorAnchorPane(Doctor doctor) {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setStyle("-fx-background-color: rgb(255,255,255); " +
@@ -71,8 +93,37 @@ public class DoctorViewController implements Initializable {
         dropShadow.setOffsetY(2);
         anchorPane.setEffect(dropShadow);
 
+
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image(doctor.getPhotoUrl()));
+        Image image = null;
+        InputStream inputStream = null;
+        String defaultImage = "/photo.jpg";
+
+        try {
+            inputStream = getClass().getResourceAsStream("/" + doctor.getPhotoUrl());
+            if (inputStream == null) {
+                inputStream = getClass().getResourceAsStream(defaultImage);
+                if (inputStream == null) {
+                    throw new FileNotFoundException("Default image file not found: " + defaultImage);
+                }
+            }
+            image = new Image(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Image Load Error", "Failed to load the doctor's image.");
+            return null;
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        imageView.setImage(image);
         imageView.setFitWidth(66);
         imageView.setFitHeight(70);
         AnchorPane.setTopAnchor(imageView, 5.0);
@@ -98,8 +149,16 @@ public class DoctorViewController implements Initializable {
         telephoneLabel.setWrapText(true); // Enable text wrapping
 
         anchorPane.getChildren().addAll(imageView, nameLabel, surnameLabel, innLabel, telephoneLabel);
-
+        anchorPane.setOnMouseClicked(event -> screenLoader.loadDoctorInfoForAdminScreen(doctor));
         return anchorPane;
     }
 
+    private void showAlert(Alert.AlertType alertType, String imageLoadError, String s) {
+    }
+
+    private Specialty specialty;
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
+        loadDoctors(specialty);
+    }
 }

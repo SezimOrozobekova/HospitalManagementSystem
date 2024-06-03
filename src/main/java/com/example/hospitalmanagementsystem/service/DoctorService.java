@@ -31,6 +31,12 @@ public class DoctorService {
 
     public Optional<Doctor> getDoctorByInnAndPassword(Long inn, String password) {
         return doctorRepository.findByInnAndPassword(inn, password);
+
+
+    }
+
+    public List<Doctor> getDoctorsBySpecialty(Specialty specialty) {
+        return doctorRepository.findAllBySpecialty(specialty);
     }
 
     public Doctor createDoctor(Doctor doctor) {
@@ -41,9 +47,7 @@ public class DoctorService {
         }
     }
 
-    public List<Doctor> getDoctorsBySpecialty(Specialty specialty) {
-        return doctorRepository.findAllBySpecialty(specialty);
-    }
+
 
     public Map<Specialty, Long> getDoctorCountBySpecialty() {
         return doctorRepository.findAll().stream()

@@ -62,6 +62,7 @@ public class MainController {
 
         try {
 
+
             Optional<Administrator> adminOptional = administratorService.getAdministratorByUsernameAndPassword(username, password);
             if (adminOptional.isPresent()) {
                 showAlert("Success", "Logged in as Administrator.");
@@ -74,7 +75,7 @@ public class MainController {
                 Doctor doc = doctorOptional.get();
                 showAlert("Success", "Logged in as Doctor.");
                 System.out.println(username);
-                screenLoader.loadDoctorMainScreen(doc.getInn());
+                screenLoader.loadDoctorMainScreen(Long.valueOf(username));
 
                 return;
             }

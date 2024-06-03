@@ -1,99 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.AddDoctorController">
    <content>
       <AnchorPane prefHeight="867.0" prefWidth="806.0">
          <children>
-            <AnchorPane layoutX="125.0" layoutY="26.0" prefHeight="584.0" prefWidth="582.0">
-               <children>
-                  <Label layoutX="199.0" layoutY="30.0" text="Информация о докторе">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="52.0" layoutY="92.0" prefHeight="18.0" prefWidth="68.0" text="Имя">
+            <VBox alignment="CENTER" layoutX="135.0" layoutY="104.0" prefHeight="557.0" prefWidth="582.0" spacing="10.0">
+               <GridPane hgap="10" vgap="10">
+                  <Label text="Имя">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="136.0" prefHeight="18.0" prefWidth="72.0" text="Фамилия">
+                  <TextField fx:id="name" prefHeight="26.0" prefWidth="298.0" GridPane.columnIndex="1" />
+
+                  <Label text="Фамилия" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="183.0" prefHeight="20.0" prefWidth="63.0" text="Отчество">
+                  <TextField fx:id="surname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                  <Label text="Отчество" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="231.0" prefHeight="20.0" prefWidth="114.0" text="Дата рождения">
+                  <TextField fx:id="secondName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                  <Label text="Дата рождения" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker layoutX="178.0" layoutY="228.0" prefHeight="26.0" prefWidth="348.0" />
-                  <Label layoutX="52.0" layoutY="278.0" prefHeight="20.0" prefWidth="114.0" text="Адрес">
+                  <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                  <Label text="Адрес" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="326.0" prefHeight="20.0" prefWidth="114.0" text="Phone number">
+                  <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                  <Label text="Phone number" GridPane.rowIndex="6">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="374.0" prefHeight="20.0" prefWidth="114.0" text="Emergency tel">
+                  <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                  <Label text="Emergency tel" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="422.0" prefHeight="20.0" prefWidth="114.0" text="Номер страховки">
+                  <TextField fx:id="emergencyContactField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                  <Label text="Номер страховки" GridPane.rowIndex="8">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="176.0" layoutY="90.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="176.0" layoutY="133.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="176.0" layoutY="180.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="178.0" layoutY="275.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="178.0" layoutY="323.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="178.0" layoutY="371.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField layoutX="178.0" layoutY="419.0" prefHeight="18.0" prefWidth="351.0" />
-                  <Label layoutX="52.0" layoutY="470.0" prefHeight="20.0" prefWidth="114.0" text="Специальность">
+                  <TextField fx:id="insuranceNumberField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+                  <Label text="Специальность" GridPane.rowIndex="9">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="178.0" layoutY="467.0" prefHeight="18.0" prefWidth="351.0" />
-                  <Label layoutX="52.0" layoutY="513.0" prefHeight="20.0" prefWidth="114.0" text="Email">
+                  <MenuButton fx:id="specialtyMenuButton" text="Выберите специальность" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <!-- MenuItems for specialties -->
+                  </MenuButton>
+
+                  <Label text="Email" GridPane.rowIndex="10">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="178.0" layoutY="510.0" prefHeight="18.0" prefWidth="351.0" />
-                  <Label layoutX="52.0" layoutY="557.0" prefHeight="20.0" prefWidth="114.0" text="Образование">
+                  <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+                  <Label text="Образование" GridPane.rowIndex="11">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="178.0" layoutY="554.0" prefHeight="18.0" prefWidth="351.0" />
-               </children>
-            </AnchorPane>
-            <Button layoutX="358.0" layoutY="815.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: lightgreen;" text="Сохранить" />
-            <Label layoutX="177.0" layoutY="625.0" prefHeight="20.0" prefWidth="114.0" text="Зарплата">
+                  <TextField fx:id="educationField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+                  <Label text="Зарплата" GridPane.rowIndex="12">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="salaryField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+                  <Label text="Пол" GridPane.rowIndex="13">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="genderComboBox" prefHeight="26.0" prefWidth="298.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+
+                  <Label text="Медицинская степень" GridPane.rowIndex="14">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="medicalDegreeField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+
+                  <Label text="Фотография" GridPane.rowIndex="15">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="25.0" prefWidth="298.0" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                     <Button fx:id="chooseImageButton" mnemonicParsing="false" onAction="#chooseImage" text="Choose image" />
+                     <ImageView fx:id="photoImageView" fitHeight="100.0" fitWidth="100" />
+                  </HBox>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: lightgreen;" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                  <Label text="ИНН" GridPane.rowIndex="4" />
+                  <TextField fx:id="innField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                     <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  </rowConstraints>
+               </GridPane>
+            </VBox>
+            <Label layoutX="328.0" layoutY="64.0" text="Информация о докторе">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="305.0" layoutY="622.0" prefHeight="18.0" prefWidth="351.0" />
+            <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" onAction="#onButtonBack" text="&lt;Back" />
          </children>
       </AnchorPane>
    </content>
