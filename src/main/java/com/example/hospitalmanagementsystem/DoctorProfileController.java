@@ -5,25 +5,22 @@ import com.example.hospitalmanagementsystem.entity.Doctor;
 import com.example.hospitalmanagementsystem.service.DoctorService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.CacheHint;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
@@ -66,7 +63,10 @@ public class DoctorProfileController {
     @Autowired
     private Validator validator;
 
+
     private Long doctorInn;
+
+    private String photoUrl;
 
     @FXML
     private void handleSignOutButtonAction() {
@@ -94,23 +94,62 @@ public class DoctorProfileController {
                 for (ConstraintViolation<Doctor> violation : violations) {
                     errorMessage.append(violation.getMessage()).append("\n");
                 }
-                showAlert("Validation Errors", errorMessage.toString());
+                showAlert(Alert.AlertType.ERROR, "Validation Errors", errorMessage.toString());
             } else {
                 doctorService.updateDoctor(doctor);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Update Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Doctor information updated successfully!");
+                alert.setContentText("Информация о докторе успешно обновлена");
                 alert.showAndWait();
             }
         } else {
-            showAlert("Update Failed", "Doctor not found for INN: " + doctorInn);
+            showAlert(Alert.AlertType.ERROR, "Update Failed", "Doctor not found for INN: " + doctorInn);
+        }
+    }
+
+    @FXML
+    private void onChangeImageButton(){
+        chooseImage();
+        Optional<Doctor> doctorOptional = doctorService.getDoctorByInn(doctorInn);
+        if(doctorOptional.isPresent()){
+            Doctor doctor = doctorOptional.get();
+            doctor.setPhotoUrl(photoUrl);
+            doctorService.updateDoctor(doctor);
+        }
+    }
+
+    private void chooseImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        if (selectedFile != null) {
+            String originalFileName = selectedFile.getName();
+            String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+            String newFileName = "doctor" + System.currentTimeMillis() + fileExtension;
+            File destinationDir = new File("src/main/resources/");
+            if (!destinationDir.exists()) {
+                destinationDir.mkdirs();
+            }
+            File destinationFile = new File(destinationDir, newFileName);
+
+            try {
+                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                photoUrl = newFileName;
+                Image image = new Image(destinationFile.toURI().toString());
+                doctorImage.setImage(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Ошибка при загрузке фото", "Фото не загрузилось.");
+            }
         }
     }
 
 
 
-    private void showAlert(String title, String message) {
+    private void showAlert(Alert.AlertType error, String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -129,16 +168,16 @@ public class DoctorProfileController {
             if (doctorOptional.isPresent()) {
                 Doctor doctor = doctorOptional.get();
                 String imagePath = doctor.getPhotoUrl();
-
                 Image image = loadImage(imagePath);
                 doctorImage.setImage(image);
             } else {
-                showAlert("Error", "Doctor not found for INN: " + doctorInn);
+                showAlert(Alert.AlertType.ERROR, "Error", "Doctor not found for INN: " + doctorInn);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Image Load Error", "Failed to load the doctor's image.");
+            showAlert(Alert.AlertType.ERROR, "Image Load Error", "Failed to load the doctor's image.");
         }
+
     }
 
     private Image loadImage(String imagePath) throws IOException {
@@ -178,4 +217,6 @@ public class DoctorProfileController {
             System.out.println("Patient not found for INN: " + doctorInn);
         }
     }
+
+
 }

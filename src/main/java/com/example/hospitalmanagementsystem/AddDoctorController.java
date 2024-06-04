@@ -128,20 +128,36 @@ public class AddDoctorController {
     @FXML
     private void handleSaveButton() {
         if (photoUrl == null) {
-            showAlert(Alert.AlertType.ERROR, "Image Required", "Please choose an image before saving the doctor's details.");
+            showAlert(Alert.AlertType.ERROR, "Image Required", "Выберите фото перед сохранением");
             return;
         }
 
-        String innText = innField.getText();
-        Long inn = null;
-        if (!innText.isBlank()) {
-            try {
-                inn = Long.valueOf(innText);
-            } catch (NumberFormatException e) {
-                showAlert(Alert.AlertType.ERROR, "Validation Error", "INN must be a valid number.");
-                return;
-            }
+        String specialtyText = specialtyMenuButton.getText();
+        Specialty specialty = null;
+        try {
+            specialty = Specialty.valueOf(specialtyText);
+        } catch (IllegalArgumentException e) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Специальность не может быть пустым");
+            return;
         }
+
+        String genderText = genderComboBox.getValue();
+        if (genderText == null || genderText.isBlank()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Гендер не может быть пустым");
+            return;
+        }
+        if(innField.getText().isBlank()){
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "ИНН не может быть пустым");
+            return;
+        }
+        String salaryText = salaryField.getText();
+        if (salaryText == null || salaryText.isBlank()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Зарплата не может быть пустым");
+            return;
+        }
+
+        double salary = Double.parseDouble(salaryText);
+        Long inn = Long.valueOf(innField.getText());
 
         Doctor doctor = new Doctor();
         doctor.setFirstName(name.getText());
@@ -151,43 +167,11 @@ public class AddDoctorController {
         doctor.setAddress(addressField.getText());
         doctor.setPhoneNumber(phoneNumberField.getText());
         doctor.setEmergencyContact(emergencyContactField.getText());
-
-        // Validate specialty
-        String specialtyText = specialtyMenuButton.getText();
-        Specialty specialty = null;
-        try {
-            specialty = Specialty.valueOf(specialtyText);
-        } catch (IllegalArgumentException e) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please select a valid specialty.");
-            return;
-        }
-        doctor.setSpecialty(specialty);
-
-        // Validate gender
-        String genderText = genderComboBox.getValue();
-        if (genderText == null || genderText.isBlank()) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please select a valid gender.");
-            return;
-        }
         doctor.setGender(genderText);
-
+        doctor.setSpecialty(specialty);
         doctor.setEmail(emailField.getText());
         doctor.setEducation(educationField.getText());
-
-        // Validate salary
-        String salaryText = salaryField.getText();
-        if (salaryText == null || salaryText.isBlank()) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Salary field cannot be empty.");
-            return;
-        }
-        try {
-            double salary = Double.parseDouble(salaryText);
-            doctor.setSalary(salary);
-        } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Salary must be a valid number.");
-            return;
-        }
-
+        doctor.setSalary(salary);
         doctor.setPhotoUrl(photoUrl);
         doctor.setMedicalDegree(medicalDegreeField.getText());
         doctor.setInn(inn);
@@ -204,7 +188,7 @@ public class AddDoctorController {
         } else {
             doctorService.createDoctor(doctor);
             clearFields();
-            showAlert(Alert.AlertType.INFORMATION, "Doctor Saved", "Doctor has been saved successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Доктор сохранен", "Доктор был успешно добавлен");
         }
     }
 
@@ -233,7 +217,7 @@ public class AddDoctorController {
                 photoImageView.setImage(image);
             } catch (IOException e) {
                 e.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Image Upload Error", "Failed to upload the image.");
+                showAlert(Alert.AlertType.ERROR, "Ошибка при загрузке фото", "Фото не загрузилось.");
             }
         }
     }

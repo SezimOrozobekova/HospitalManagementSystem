@@ -15,31 +15,31 @@
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.DoctorTabController">
     <content>
-        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="824.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Patient">
+                <Tab text="Пациент">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="patientTableView" layoutX="53.0" layoutY="93.0" prefHeight="403.0" prefWidth="728.0">
+                                <TableView fx:id="patientTableView" layoutX="53.0" layoutY="95.0" prefHeight="387.0" prefWidth="728.0">
                                     <columns>
                                         <TableColumn fx:id="innColumn" prefWidth="176.79999160766602" text="ИНН" />
                                         <TableColumn fx:id="fioColumn" minWidth="0.0" prefWidth="330.3999481201172" text="ФИО" />
-                                        <TableColumn fx:id="emergencyPhoneColumn" minWidth="0.0" prefWidth="219.19989013671875" text="Emergency phone" />
+                                        <TableColumn fx:id="emergencyPhoneColumn" minWidth="0.0" prefWidth="219.19989013671875" text="Номер телефона" />
                                     </columns>
                                 </TableView>
-                                <TextField fx:id="innTextField" layoutX="107.0" layoutY="33.0" prefHeight="26.0" prefWidth="431.0" promptText="Patient INN" />
-                                <Button layoutX="607.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="26.0" prefWidth="173.0" style="-fx-background-color: lightgreen;" text="Add patient" />
-                                <Button layoutX="548.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleFindPatientButton" text="Find" />
-                                <Button layoutX="720.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSignOutButton" text="Sign out" />
+                                <TextField fx:id="innTextField" layoutX="107.0" layoutY="33.0" prefHeight="26.0" prefWidth="431.0" promptText="Поиск пациента по ИНН" />
+                                <Button layoutX="576.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: lightgreen;" text="Добавить пациента" />
+                                <Button layoutX="548.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleFindPatientButton" text="Найти" />
+                                <Button layoutX="730.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSignOutButton" style="-fx-background-color: lightpink;" text="Выйти" />
                             </children></AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Doctor">
+                <Tab text="Доктор">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="691.0" prefWidth="806.0">
                             <children>
-                                <GridPane fx:id="doctorGridPane" hgap="20" layoutX="11.0" layoutY="81.0" prefHeight="420.0" prefWidth="791.0" style="-fx-padding: 10px;" vgap="20">
+                                <GridPane fx:id="doctorGridPane" hgap="20" layoutX="86.0" layoutY="81.0" prefHeight="420.0" prefWidth="698.0" style="-fx-padding: 10px;" vgap="20">
                                     <columnConstraints>
                                         <ColumnConstraints />
                                     </columnConstraints>
@@ -47,9 +47,9 @@
                                         <RowConstraints />
                                     </rowConstraints>
                                 </GridPane>
-                                <Button layoutX="607.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleAddDoctorButton" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: lightgreen;" text="Add doctor" />
+                                <Button layoutX="573.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleAddDoctorButton" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: lightgreen;" text="Add doctor" />
                                 <ButtonBar layoutX="464.0" layoutY="-15.0" prefHeight="40.0" prefWidth="200.0" />
-                                <Button layoutX="721.0" layoutY="32.0" mnemonicParsing="false" onAction="#onSignOutButton" text="Sign out" />
+                                <Button layoutX="686.0" layoutY="37.0" mnemonicParsing="false" onAction="#onSignOutButton" style="-fx-background-color: lightpink;" text="Выйти" />
                             </children>
                         </AnchorPane>
                     </content>

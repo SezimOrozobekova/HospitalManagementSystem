@@ -23,14 +23,14 @@ public class PatientService {
 
     public Optional<Patient> getPatientByInn(Long inn) {
         return Optional.ofNullable(patientRepository.findByInnAndActiveTrue(inn)
-                .orElseThrow(() -> new ResourceNotFoundException("Patient with INN " + inn + " not found")));
+                .orElseThrow(() -> new ResourceNotFoundException("Пациент с ИНН " + inn + " не найден")));
     }
 
-    public Patient createPatient(Patient patient) {
+    public void createPatient(Patient patient) {
         try {
-            return patientRepository.save(patient);
+            patientRepository.save(patient);
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to create patient", ex);
+            throw new RuntimeException("Пациент не создан", ex);
         }
     }
 
@@ -38,27 +38,17 @@ public class PatientService {
         try {
             return patientRepository.findAllByActiveTrue();
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to retrieve patients", ex);
+            throw new RuntimeException("Не удалось найти пациента", ex);
         }
     }
-    public Patient updatePatient(Long inn, Patient updatedPatient) {
-        return patientRepository.findByInnAndActiveTrue(inn)
+    public void updatePatient(Long inn, Patient updatedPatient) {
+        patientRepository.findByInnAndActiveTrue(inn)
                 .map(existingPatient -> {
                     updatedPatient.setId(existingPatient.getId());
                     return patientRepository.save(updatedPatient);
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("Patient with INN " + inn + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Пациент с ИНН " + inn + " не найден"));
     }
 
 
-    public void deletePatient(Long inn) {
-        patientRepository.findByInnAndActiveTrue(inn).ifPresentOrElse(
-                patient -> {
-                    patient.setActive(Boolean.FALSE);
-                    patientRepository.save(patient);
-                },
-                () -> {
-                    throw new ResourceNotFoundException("Patient with INN " + inn + " not found");
-                });
-    }
 }

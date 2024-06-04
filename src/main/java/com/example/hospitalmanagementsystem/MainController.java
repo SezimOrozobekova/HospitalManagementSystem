@@ -65,7 +65,6 @@ public class MainController {
 
             Optional<Administrator> adminOptional = administratorService.getAdministratorByUsernameAndPassword(username, password);
             if (adminOptional.isPresent()) {
-                showAlert("Success", "Logged in as Administrator.");
                 screenLoader.loadAdministratorScreen();
                 return;
             }
@@ -73,15 +72,12 @@ public class MainController {
             Optional<Doctor> doctorOptional = doctorService.getDoctorByInnAndPassword(Long.valueOf(username), password);
             if (doctorOptional.isPresent()) {
                 Doctor doc = doctorOptional.get();
-                showAlert("Success", "Logged in as Doctor.");
-                System.out.println(username);
                 screenLoader.loadDoctorMainScreen(Long.valueOf(username));
-
                 return;
             }
 
 
-            showAlert("Error", "Invalid username or password.");
+            showAlert("Error", "Неправильный пароль или ИНН");
         } catch (Exception e) {
             showAlert("Error", e.getMessage());
         }
@@ -99,7 +95,6 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        // Load the image and set it to the ImageView
         try {
             Image image = new Image(new ClassPathResource("signinphoto.png").getInputStream());
             logoImage.setImage(image);

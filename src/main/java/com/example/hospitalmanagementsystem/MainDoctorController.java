@@ -13,10 +13,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 
 @Controller
@@ -56,14 +57,15 @@ public class MainDoctorController {
             if (patientOptional.isPresent()) {
                 screenLoader.loadPatientInfoScreen(inn, doctorInn);
             } else {
-                showAlert("Patient Not Found", "Patient with INN " + inn + " not found.");
+                showAlert(Alert.AlertType.ERROR, "Пациент не найден. ", "Пациент с ИНН " + inn + " не найден.");
             }
         } catch (NumberFormatException e) {
-            showAlert("Invalid INN", "Please enter a valid number for INN.");
+            showAlert(Alert.AlertType.ERROR, "Invalid INN", "Введите числовое значение.");
         } catch (Exception e) {
-            showAlert("Error", "Failed to search for patient: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", "Ошибка при поиске пациента: " + e.getMessage());
         }
     }
+
 
 
 
@@ -71,22 +73,37 @@ public class MainDoctorController {
 
     private void customInitialize(Long doctorInn) {
         this.doctorInn = doctorInn;
+        doctorImage.setOnMouseClicked(event -> handleDoctorImageClick());
         try {
-            doctorImage.setOnMouseClicked(event -> handleDoctorImageClick());
-
-            Doctor doctor = doctorService.getDoctorByInn(doctorInn).orElseThrow(() -> new RuntimeException("Doctor not found"));
-
-            Image image = new Image(new ClassPathResource(doctor.getPhotoUrl()).getInputStream());
-            doctorImage.setImage(image);
-        } catch (IOException e) {
+            Optional<Doctor> doctorOptional = doctorService.getDoctorByInn(doctorInn);
+            if (doctorOptional.isPresent()) {
+                Doctor doctor = doctorOptional.get();
+                Image image = loadImage(doctor.getPhotoUrl());
+                doctorImage.setImage(image);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", "Доктор с: " + doctorInn + "не найден");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Image Load Error", "Фото не загрузилось.");
         }
+    }
+    private Image loadImage(String imagePath) throws IOException {
+        String defaultImage = "/photo.jpg";
+        InputStream inputStream = getClass().getResourceAsStream("/" + imagePath);
+        if (inputStream == null) {
+            inputStream = getClass().getResourceAsStream(defaultImage);
+            if (inputStream == null) {
+                throw new FileNotFoundException("Default image file not found: " + defaultImage);
+            }
+        }
+        return new Image(inputStream);
     }
     private void handleDoctorImageClick() {
         screenLoader.loadDoctorInfoScreen(doctorInn);
     }
 
-    private void showAlert(String title, String message) {
+    private void showAlert(Alert.AlertType error, String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);

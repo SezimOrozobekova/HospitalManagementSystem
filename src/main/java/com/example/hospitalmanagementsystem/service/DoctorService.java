@@ -4,10 +4,8 @@ import com.example.hospitalmanagementsystem.entity.Doctor;
 import com.example.hospitalmanagementsystem.entity.Specialty;
 import com.example.hospitalmanagementsystem.exception.ResourceNotFoundException;
 import com.example.hospitalmanagementsystem.repository.DoctorRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Map;
@@ -39,14 +37,13 @@ public class DoctorService {
         return doctorRepository.findAllBySpecialtyAndActiveTrue(specialty);
     }
 
-    public Doctor createDoctor(Doctor doctor) {
+    public void createDoctor(Doctor doctor) {
         try {
-            return doctorRepository.save(doctor);
+            doctorRepository.save(doctor);
         } catch (Exception ex) {
             throw new RuntimeException("Failed to create doctor", ex);
         }
     }
-
 
 
     public Map<Specialty, Long> getDoctorCountBySpecialty() {
@@ -54,8 +51,8 @@ public class DoctorService {
                 .collect(Collectors.groupingBy(Doctor::getSpecialty, Collectors.counting()));
     }
 
-    public Doctor updateDoctor(Doctor updatedDoctor) {
-        return doctorRepository.findByInnAndActiveTrue(updatedDoctor.getInn())
+    public void updateDoctor(Doctor updatedDoctor) {
+        doctorRepository.findByInnAndActiveTrue(updatedDoctor.getInn())
                 .map(existingDoctor -> {
                     updatedDoctor.setId(existingDoctor.getId());
                     return doctorRepository.save(updatedDoctor);
@@ -63,15 +60,5 @@ public class DoctorService {
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor with INN " + updatedDoctor.getInn() + " not found"));
     }
 
-    public void deleteDoctor(Long inn) {
-        doctorRepository.findByInnAndActiveTrue(inn).ifPresentOrElse(
-                doctorRepository::delete,
-                () -> {
-                    throw new ResourceNotFoundException("Doctor with INN " + inn + " not found");
-                });
-    }
 
-    public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAllByActiveTrue();
-    }
 }

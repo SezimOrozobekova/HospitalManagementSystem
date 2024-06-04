@@ -57,14 +57,14 @@
                   </Label>
                   <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                  <Label text="Phone number" GridPane.rowIndex="6">
+                  <Label text="Тел номер" GridPane.rowIndex="6">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-                  <Label text="Emergency tel" GridPane.rowIndex="7">
+                  <Label prefHeight="20.0" prefWidth="141.0" text="Резервный тел номер" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -87,7 +87,7 @@
                      <!-- MenuItems for specialties -->
                   </MenuButton>
 
-                  <Label text="Email" GridPane.rowIndex="10">
+                  <Label prefHeight="20.0" prefWidth="134.0" text="Эл почта" GridPane.rowIndex="10">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -134,8 +134,12 @@
                   <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: lightgreen;" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="18" />
                   <Label text="ИНН" GridPane.rowIndex="4" />
                   <TextField fx:id="innField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Password" GridPane.rowIndex="11" />
                   <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <Label layoutX="10.0" layoutY="373.0" text="Пароль" GridPane.rowIndex="11">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
 
                   <columnConstraints>
                      <ColumnConstraints />
@@ -171,7 +175,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" onAction="#onButtonBack" text="&lt;Back" />
+            <Button layoutX="135.0" layoutY="38.0" mnemonicParsing="false" onAction="#onButtonBack" text="Назад" />
          </children>
       </AnchorPane>
    </content>

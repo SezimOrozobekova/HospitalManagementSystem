@@ -53,7 +53,7 @@ public class PatientInfoForAdmin {
     @FXML
     public void initialize() {
         // Initialize genderComboBox with values
-        genderComboBox.getItems().addAll("Male", "Female");
+        genderComboBox.getItems().addAll("Мужской", "Женский");
     }
 
     @Autowired
@@ -125,7 +125,7 @@ public class PatientInfoForAdmin {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Update Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Patient information updated successfully!");
+                    alert.setContentText("Информация о пациенте успешно обновлена!");
                     alert.showAndWait();
                 }
             } else {
@@ -150,7 +150,7 @@ public class PatientInfoForAdmin {
             Patient patient = patientOptional.get();
             patient.setActive(Boolean.FALSE);
             patientService.updatePatient(patient.getInn(), patient);
-            showAlert("Doctor info deleted", "Successfully Deleted");
+            showAlert("Doctor info deleted", "Успешно удалено");
             screenLoader.loadAdministratorScreen();
         }
 

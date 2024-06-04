@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.HistoryController">
+<AnchorPane prefHeight="680.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.HistoryController">
    <children>
-      <TextArea fx:id="complaintsField" layoutX="261.0" layoutY="115.0" prefHeight="188.0" prefWidth="427.0" wrapText="true" />
-      <Label layoutX="90.0" layoutY="115.0" prefHeight="42.0" prefWidth="134.0" text="Жалобы">
+      <TextArea fx:id="complaintsField" layoutX="261.0" layoutY="201.0" prefHeight="118.0" prefWidth="427.0" wrapText="true" />
+      <Label layoutX="109.0" layoutY="201.0" prefHeight="42.0" prefWidth="134.0" text="Жалобы">
          <font>
-            <Font size="18.0" />
+            <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="340.0" prefHeight="67.0" prefWidth="134.0" text="Диагноз и Назначение" wrapText="true">
+      <Label layoutX="109.0" layoutY="344.0" prefHeight="67.0" prefWidth="134.0" text="Диагноз и назначение" wrapText="true">
          <font>
-            <Font size="18.0" />
+            <Font size="17.0" />
          </font>
       </Label>
-      <TextArea fx:id="diagnosisField" layoutX="261.0" layoutY="340.0" prefHeight="188.0" prefWidth="427.0" wrapText="true" />
-      <Button layoutX="279.0" layoutY="588.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="29.0" prefWidth="254.0" style="-fx-background-color: lightgreen;" text="Потвердить" />
+      <TextArea fx:id="diagnosisField" layoutX="261.0" layoutY="344.0" prefHeight="117.0" prefWidth="427.0" wrapText="true" />
+      <Button layoutX="474.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="30.0" prefWidth="213.0" style="-fx-background-color: lightgreen;" text="Потвердить" />
+      <Label layoutX="261.0" layoutY="65.0" prefHeight="42.0" prefWidth="236.0" text="История болезни">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="109.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonBack" text="Назад" />
    </children>
 </AnchorPane>

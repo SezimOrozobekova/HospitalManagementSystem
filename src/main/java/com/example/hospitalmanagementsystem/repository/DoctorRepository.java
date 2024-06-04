@@ -1,7 +1,6 @@
 package com.example.hospitalmanagementsystem.repository;
 
 import com.example.hospitalmanagementsystem.entity.Doctor;
-import com.example.hospitalmanagementsystem.entity.Patient;
 import com.example.hospitalmanagementsystem.entity.Specialty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,10 +17,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     List<Doctor> findAllByActiveTrue();
 
     Optional<Doctor> findByInnAndPasswordAndActiveTrue(Long inn, String password);
-
-    List<Doctor> findByActiveTrue();
-
-
 
 
 }

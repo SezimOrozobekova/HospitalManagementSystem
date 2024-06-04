@@ -1,62 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.PatientInfoForAdmin">
+<ScrollPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.PatientInfoForAdmin">
    <content>
       <AnchorPane prefHeight="635.0" prefWidth="810.0">
          <children>
-            <AnchorPane layoutX="133.0" layoutY="8.0" prefHeight="525.0" prefWidth="582.0">
+            <AnchorPane layoutX="113.0" layoutY="42.0" prefHeight="526.0" prefWidth="612.0">
                <children>
-                  <Label layoutX="199.0" layoutY="30.0" text="Информация о пациенте">
+                  <Label layoutX="199.0" text="Информация о пациенте">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="92.0" prefHeight="18.0" prefWidth="68.0" text="Имя">
+                  <Label layoutX="7.0" layoutY="95.0" prefHeight="18.0" prefWidth="68.0" text="Имя">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="136.0" prefHeight="18.0" prefWidth="72.0" text="Фамилия">
+                  <Label layoutX="7.0" layoutY="139.0" prefHeight="18.0" prefWidth="72.0" text="Фамилия">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="183.0" prefHeight="20.0" prefWidth="63.0" text="Отчество">
+                  <Label layoutX="7.0" layoutY="186.0" prefHeight="20.0" prefWidth="63.0" text="Отчество">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="231.0" prefHeight="20.0" prefWidth="114.0" text="Дата рождения">
+                  <Label layoutX="7.0" layoutY="234.0" prefHeight="20.0" prefWidth="114.0" text="Дата рождения">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <DatePicker fx:id="birthdatePicker" layoutX="178.0" layoutY="228.0" prefHeight="26.0" prefWidth="348.0" />
-                  <Label layoutX="52.0" layoutY="288.0" prefHeight="20.0" prefWidth="114.0" text="Адрес">
+                  <Label layoutX="7.0" layoutY="283.0" prefHeight="20.0" prefWidth="114.0" text="Адрес">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="339.0" prefHeight="20.0" prefWidth="114.0" text="Phone number">
+                  <Label layoutX="7.0" layoutY="334.0" prefHeight="20.0" prefWidth="114.0" text="Номер тел">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="387.0" prefHeight="20.0" prefWidth="114.0" text="Emergency tel">
+                  <Label layoutX="7.0" layoutY="382.0" prefHeight="20.0" prefWidth="146.0" text="Резервный тел номер">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="435.0" prefHeight="20.0" prefWidth="114.0" text="Номер страховки">
+                  <Label layoutX="7.0" layoutY="430.0" prefHeight="20.0" prefWidth="114.0" text="Номер страховки">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -64,21 +59,21 @@
                   <TextField fx:id="firstNameField" layoutX="176.0" layoutY="90.0" prefHeight="18.0" prefWidth="351.0" />
                   <TextField fx:id="lastNameField" layoutX="176.0" layoutY="133.0" prefHeight="18.0" prefWidth="351.0" />
                   <TextField fx:id="middleNameField" layoutX="176.0" layoutY="180.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField fx:id="addressField" layoutX="178.0" layoutY="285.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField fx:id="phoneNumberField" layoutX="178.0" layoutY="336.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField fx:id="emergencyTelField" layoutX="178.0" layoutY="384.0" prefHeight="18.0" prefWidth="351.0" />
-                  <TextField fx:id="insuranceNumberField" layoutX="178.0" layoutY="432.0" prefHeight="18.0" prefWidth="351.0" />
-                  <ComboBox fx:id="genderComboBox" layoutX="178.0" layoutY="475.0" prefHeight="26.0" prefWidth="298.0" />
-                  <Label layoutX="52.0" layoutY="478.0" prefHeight="20.0" prefWidth="114.0" text="Пол">
+                  <TextField fx:id="addressField" layoutX="178.0" layoutY="277.0" prefHeight="18.0" prefWidth="351.0" />
+                  <TextField fx:id="phoneNumberField" layoutX="178.0" layoutY="328.0" prefHeight="18.0" prefWidth="351.0" />
+                  <TextField fx:id="emergencyTelField" layoutX="178.0" layoutY="376.0" prefHeight="18.0" prefWidth="351.0" />
+                  <TextField fx:id="insuranceNumberField" layoutX="178.0" layoutY="424.0" prefHeight="18.0" prefWidth="351.0" />
+                  <ComboBox fx:id="genderComboBox" layoutX="178.0" layoutY="467.0" prefHeight="26.0" prefWidth="190.0" />
+                  <Label layoutX="7.0" layoutY="473.0" prefHeight="20.0" prefWidth="114.0" text="Пол">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Button layoutY="1.0" mnemonicParsing="false" onAction="#onButtonBack" text="Назад" />
                </children>
             </AnchorPane>
-            <Button layoutX="32.0" layoutY="26.0" mnemonicParsing="false" onAction="#onButtonBack" text="&lt; Back" />
-            <Button layoutX="537.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleUpdateButton" style="-fx-background-color: yellow;" text="Update" />
-            <Button layoutX="605.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleDeleteButton" style="-fx-background-color: lightpink;" text="Delete" />
+            <Button layoutX="292.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="26.0" prefWidth="178.0" style="-fx-background-color: lightgreen;" text="Обновить" />
+            <Button layoutX="482.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="26.0" prefWidth="163.0" style="-fx-background-color: lightpink;" text="Удалить" />
          </children>
       </AnchorPane>
    </content>

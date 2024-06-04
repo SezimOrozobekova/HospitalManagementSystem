@@ -98,9 +98,9 @@ public class DoctorTabController {
                 screenLoader.loadPatientInfoAdminScreen(inn);
             }
         } catch (NumberFormatException e) {
-            showAlert("Invalid INN", "Please enter a valid number for INN.");
+            showAlert("Invalid INN", "Пожалуйста введите числовое значение.");
         } catch (Exception e) {
-            showAlert("Error", "Failed to search for patient: " + e.getMessage());
+            showAlert("Error", "Пациент не найден: " + e.getMessage());
         }
     }
 
@@ -133,7 +133,7 @@ public class DoctorTabController {
         Map<Specialty, Long> doctorCounts = doctorService.getDoctorCountBySpecialty();
         int row = 0;
         int col = 0;
-        int maxColumns = 4; // Maximum number of columns before wrapping
+        int maxColumns = 3; // Maximum number of columns before wrapping
 
         for (Map.Entry<Specialty, Long> entry : doctorCounts.entrySet()) {
             Specialty specialty = entry.getKey(); // Capture the current specialty
@@ -153,11 +153,11 @@ public class DoctorTabController {
 
             anchorPane.setPadding(new Insets(15));
 
-            Label specialtyLabel = new Label("Specialty: " + specialty.name());
+            Label specialtyLabel = new Label("Специальность: " + specialty.name());
             specialtyLabel.setLayoutX(10);
             specialtyLabel.setLayoutY(10);
 
-            Label quantityLabel = new Label("Quantity: " + entry.getValue());
+            Label quantityLabel = new Label("Всего: " + entry.getValue());
             quantityLabel.setLayoutX(10);
             quantityLabel.setLayoutY(30);
 

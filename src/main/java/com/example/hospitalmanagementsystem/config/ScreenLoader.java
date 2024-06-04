@@ -3,10 +3,7 @@ package com.example.hospitalmanagementsystem.config;
 import com.example.hospitalmanagementsystem.*;
 import com.example.hospitalmanagementsystem.entity.Doctor;
 import com.example.hospitalmanagementsystem.entity.Specialty;
-import com.example.hospitalmanagementsystem.service.AdministratorService;
-import com.example.hospitalmanagementsystem.service.DoctorService;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -21,13 +18,10 @@ public class ScreenLoader {
 
     private Stage stage;
     private final ApplicationContext applicationContext;
-    private final DoctorService doctorService;
-    private final AdministratorService administratorService;
+
 
     @Autowired
-    public ScreenLoader(DoctorService doctorService, AdministratorService administratorService, ApplicationContext applicationContext) {
-        this.doctorService = doctorService;
-        this.administratorService = administratorService;
+    public ScreenLoader(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
@@ -126,8 +120,6 @@ public class ScreenLoader {
             e.printStackTrace();
         }
     }
-
-
 
     public void loadMedHistoryScreen(Long patientInn, Long doctorInn) {
         try {

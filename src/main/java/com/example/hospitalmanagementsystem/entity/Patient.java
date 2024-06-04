@@ -19,38 +19,40 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "INN cannot be null")
+    @NotNull(message = "ИНН обязательно")
     private Long inn;
 
-    @NotBlank(message = "Last name is required")
-    @Size(max = 100, message = "Last name must be less than or equal to 100 characters")
+    @NotBlank(message = "Фамилия обязательно")
+    @Size(max = 100, message = "Фамилия должна быть меньше 100 символов")
     private String lastName;
 
-    @NotBlank(message = "First name is required")
-    @Size(max = 100, message = "First name must be less than or equal to 100 characters")
+    @NotBlank(message = "Имя обязательно")
+    @Size(max = 100, message = "Имя должно быть меньше 100 символов")
     private String firstName;
 
-    @Size(max = 100, message = "Second name must be less than or equal to 100 characters")
+    @Size(max = 100, message = "Отчество должно быть меньше 100 символов")
     private String secondName;
 
-    @NotNull(message = "Date of birth cannot be null")
-    @PastOrPresent(message = "Date of birth cannot be in the future")
+    @NotBlank(message = "Гендер обязательно")
+    private String gender;
+
+    @NotNull(message = "Дата рождения обязательно")
+    @PastOrPresent
     private LocalDateTime dateBirthday;
 
-    @NotBlank(message = "Address is required")
-    @Size(max = 255, message = "Address must be less than or equal to 255 characters")
+    @NotBlank(message = "Адрес обязательно")
+    @Size(max = 255, message = "Адрес должен быть меньше 255 символов")
     private String address;
 
-    @NotBlank(message = "Phone is required")
+    @NotBlank(message = "Номер телефона обязательно")
     private String phoneNumber;
 
+    @NotBlank(message = "Резервный контакт обязательно")
     private String emergencyContact;
 
-    @NotBlank(message = "Insurance number is required")
+    @NotBlank(message = "Номер страхование обязательно")
     private String insuranceNumber;
 
-    @NotBlank(message = "Gender is required")
-    private String gender;
 
     @OneToMany(mappedBy = "patient")
     private List<MedicalHistory> medicalHistories;

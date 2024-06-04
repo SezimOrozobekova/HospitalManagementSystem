@@ -33,12 +33,12 @@ public class MedicalHistory {
 
     private LocalDateTime data;
 
-    // Get the doctor's name
+
     public String getDoctorInn() {
         return doctor != null ? doctor.getInn() + " " : "";
     }
 
-    // Get the doctor's profession
+
     public String getSpeciality() {
         return doctor != null ? "" + doctor.getSpecialty() : " ";
     }

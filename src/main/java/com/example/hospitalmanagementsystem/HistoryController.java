@@ -10,7 +10,9 @@ import com.example.hospitalmanagementsystem.repository.MedicalHistoryRepository;
 import com.example.hospitalmanagementsystem.service.DoctorService;
 import com.example.hospitalmanagementsystem.service.MedicalHistoryService;
 import com.example.hospitalmanagementsystem.service.PatientService;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,10 +39,6 @@ public class HistoryController {
 
 
     @Autowired
-    private DoctorRepository doctorRepository;
-
-
-    @Autowired
     private PatientService patientService;
 
     @Autowired
@@ -55,11 +53,13 @@ public class HistoryController {
     private void handleConfirmButton() {
         String complaint = complaintsField.getText();
         String diagnosis = diagnosisField.getText();
-        Optional<Doctor> doctorOptional = doctorService.getDoctorByInn(doctorInn);
+        if(complaint.isBlank() || diagnosis.isBlank()){
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Заполните все поля");
+            return;
+        }
 
-
-        Doctor doctor = doctorService.getDoctorByInn(doctorInn).orElseThrow(() -> new RuntimeException("Doc not found"));
-        Patient patient = patientService.getPatientByInn(patientInn).orElseThrow(() -> new RuntimeException("Patient not found"));
+        Doctor doctor = doctorService.getDoctorByInn(doctorInn).orElseThrow(() -> new RuntimeException("Доктор не найден"));
+        Patient patient = patientService.getPatientByInn(patientInn).orElseThrow(() -> new RuntimeException("Пациент не найден"));
 
         MedicalHistory medicalHistory = MedicalHistory.builder()
                 .patient(patient)
@@ -77,4 +77,17 @@ public class HistoryController {
         this.patientInn = patientInn;
         this.doctorInn = doctorInn;
     }
+
+    public void onButtonBack(Event event){
+        screenLoader.loadPatientInfoScreen(patientInn, doctorInn);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

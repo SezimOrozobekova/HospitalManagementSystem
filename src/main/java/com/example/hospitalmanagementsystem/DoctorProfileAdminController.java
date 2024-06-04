@@ -101,11 +101,11 @@ public class DoctorProfileAdminController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Update Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Doctor information updated successfully!");
+                alert.setContentText("Информация о докторе успешно сохранена");
                 alert.showAndWait();
             }
         } else {
-            showAlert("Update Failed", "Doctor not found for INN: " + doctorInn);
+            showAlert("Update Failed", "Доктор с ИНН: " + doctorInn + " не найден в базе");
         }
     }
 
@@ -136,7 +136,7 @@ public class DoctorProfileAdminController {
             Doctor doctor = doctorOptional.get();
             doctor.setActive(Boolean.FALSE);
             doctorService.updateDoctor(doctor);
-            showAlert("Doctor info deleted", "Successfully Deleted");
+            showAlert("Doctor info deleted", "Успешно удалено");
             screenLoader.loadAdministratorScreen();
         }
 
@@ -152,7 +152,7 @@ public class DoctorProfileAdminController {
                 Image image = loadImage(imagePath);
                 doctorImage.setImage(image);
             } else {
-                showAlert("Error", "Doctor not found for INN: " + doctorInn);
+                showAlert("Error", "Доктор с ИНН: " + doctorInn + " не найден в базе данных");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -192,9 +192,7 @@ public class DoctorProfileAdminController {
             emergencyTelField.setText(doctor.getEmergencyContact());
             emailField.setText(doctor.getEmail());
 
-            System.out.println("Set items in medicalHistoryTable");
         } else {
-            System.out.println("Patient not found for INN: " + doctorInn);
         }
     }
 }

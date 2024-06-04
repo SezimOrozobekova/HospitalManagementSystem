@@ -15,7 +15,6 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Controller
@@ -81,16 +80,13 @@ public class AddPatientController {
 
     @FXML
     public void handleAddPatient(ActionEvent event) {
-        String innText = innField.getText();
-        Long inn = null;
-        if (!innText.isBlank()) {
-            try {
-                inn = Long.valueOf(innText);
-            } catch (NumberFormatException e) {
-                showAlert(AlertType.ERROR, "Validation Error", "INN must be a valid number.");
-                return;
-            }
+
+        if(innField.getText().isBlank()){
+            showAlert(AlertType.ERROR, "Validation Error", "ИНН должно иметь числовое значение.");
+            return;
         }
+        Long inn = Long.valueOf(innField.getText());
+
         Patient patient = new Patient();
         patient.setFirstName(firstNameField.getText());
         patient.setLastName(lastNameField.getText());
@@ -117,7 +113,7 @@ public class AddPatientController {
         } else {
             patientService.createPatient(patient);
             clearFields();
-            showAlert(AlertType.INFORMATION, "Patient Added", "Patient successfully added.");
+            showAlert(AlertType.INFORMATION, "Patient Added", "Пациент успешно сохранен.");
         }
     }
 

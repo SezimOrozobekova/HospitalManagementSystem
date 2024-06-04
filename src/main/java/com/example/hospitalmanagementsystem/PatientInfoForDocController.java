@@ -115,7 +115,6 @@ public class PatientInfoForDocController {
     public void setPatientAndDoctorInn(Long patientInn, Long doctorInn) {
         this.patientInn = patientInn;
         this.doctorInn = doctorInn;
-        System.out.println("Setting Patient INN: " + patientInn + ", Doctor INN: " + doctorInn);
         Optional<Patient> patientOptional = patientService.getPatientByInn(patientInn);
         if (patientOptional.isPresent()) {
             Patient patient = patientOptional.get();
@@ -130,9 +129,7 @@ public class PatientInfoForDocController {
             List<MedicalHistory> medicalHistories = medicalHistoryService.getMedicalHistoriesByPatientId(patient.getId());
             ObservableList<MedicalHistory> medicalHistoryData = FXCollections.observableArrayList(medicalHistories);
             medicalHistoryTable.setItems(medicalHistoryData);
-            System.out.println("Set items in medicalHistoryTable");
         } else {
-            System.out.println("Patient not found for INN: " + patientInn);
         }
     }
 

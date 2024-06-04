@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-    Optional<Patient> findByInn(Long inn);
 
     Optional<Patient> findByInnAndActiveTrue(Long inn); // Only active patients
     List<Patient> findAllByActiveTrue();

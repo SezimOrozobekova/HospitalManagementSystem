@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.MainDoctorController">
+<AnchorPane prefHeight="625.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospitalmanagementsystem.MainDoctorController">
    <children>
    
 
-      <ImageView fx:id="doctorImage" fitHeight="59.0" fitWidth="64.0" layoutX="724.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="277.0" layoutY="274.0" prefHeight="18.0" prefWidth="300.0" text="Найти пациента по ИНН" textFill="#2ea1ff">
+      <ImageView fx:id="doctorImage" fitHeight="59.0" fitWidth="64.0" layoutX="662.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="237.0" layoutY="232.0" prefHeight="35.0" prefWidth="361.0" text="Добро пожаловать в систему" textFill="#2e768f">
          <font>
-            <Font size="24.0" />
+            <Font name="Century" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="innField" layoutX="156.0" layoutY="340.0" prefHeight="35.0" prefWidth="558.0" promptText="Введите ИНН" />
-      <Button layoutX="371.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: lightblue;" text="Найти" />
+      <TextField fx:id="innField" layoutX="175.0" layoutY="339.0" prefHeight="35.0" prefWidth="441.0" promptText="Поиск пациента по ИНН" />
+      <Button layoutX="616.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="35.0" prefWidth="58.0" style="-fx-background-color: #2e768f;" text="Найти" textFill="WHITE" />
    </children>
 </AnchorPane>

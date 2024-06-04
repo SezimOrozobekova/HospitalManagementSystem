@@ -19,43 +19,43 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "INN cannot be null")
+    @NotNull(message = "ИНН обязательно")
     private Long inn;
 
-    @NotBlank(message =  "Password is required")
+    @NotBlank(message =  "Пароль обязательно")
     private String password;
 
-    @NotBlank(message = "Last name is required")
-    @Size(max = 100, message = "Last name must be less than or equal to 100 characters")
+    @NotBlank(message = "Фамилия обязательно")
+    @Size(max = 100, message = "Фамилия должна быть меньше 100 символов")
     private String lastName;
 
-    @NotBlank(message = "First name is required")
-    @Size(max = 100, message = "First name must be less than or equal to 100 characters")
+    @NotBlank(message = "Имя обязательно")
+    @Size(max = 100, message = "Имя должно быть меньше 100 символов")
     private String firstName;
 
-    @Size(max = 100, message = "Second name must be less than or equal to 100 characters")
+    @Size(max = 100, message = "Отчество должно быть меньше 100 символов")
     private String secondName;
 
-    @NotBlank(message = "Gender is required")
+    @NotBlank(message = "Гендер обязательно")
     private String gender;
 
-    @NotNull(message = "Date of birth cannot be null")
+    @NotNull(message = "Дата рождения обязательно")
     @PastOrPresent
     private LocalDateTime dateBirthday;
 
-    @NotBlank(message = "Address is required")
-    @Size(max = 255, message = "Address must be less than or equal to 255 characters")
+    @NotBlank(message = "Адрес обязательно")
+    @Size(max = 255, message = "Адрес должен быть меньше 255 символов")
     private String address;
 
-    @NotBlank(message = "Phone number is required")
+    @NotBlank(message = "Номер телефона обязательно")
     private String phoneNumber;
 
-    @NotBlank(message = "Emergency contact is required")
+    @NotBlank(message = "Резервный контакт обязательно")
     private String emergencyContact;
 
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Specialty is required")
+    @NotNull(message = "Специальность обязательно")
     private Specialty specialty;
 
     private String photoUrl;
@@ -68,17 +68,16 @@ public class Doctor {
 
     private String experience;
 
-    @NotBlank(message = "Medical degree is required")
+    @NotBlank(message = "Медицинское образование обязательно")
     private String medicalDegree;
 
-    @NotBlank(message = "Education is required")
+    @NotBlank(message = "Образование обязательно")
     private String education;
 
     private double salary;
 
     @Builder.Default
     private Boolean active = Boolean.TRUE;
-
 
 
     @OneToMany(mappedBy = "doctor")
